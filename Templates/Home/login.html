@@ -1,0 +1,42 @@
+{% extends 'Home/navbar.html' %}
+{% block title %}  CodingOutreach - For Everyone {% endblock %} 
+{% block cssd %} 
+{% load static %}
+{% static 'login.css' %} {% endblock %}
+
+{% block jsd %} 
+{% load static %}
+{% static 'login.js' %} {% endblock %}
+
+<style>
+.signpp a:visited,.signpp a:link{
+  color: white;
+}
+.signpp a:active,.signpp a:hover{
+  color: turquoise;
+}
+</style>
+{% block body %}
+<div class="cont">
+<div class="login-box">
+    <h1 class="logintxt">Login</h1>
+    <form id="login_form" action="/login" method="post" name="loginform">
+      {% csrf_token %}
+    <div class="textbox">
+      <i class="fas fa-user"></i>
+      <input class="inpt" type="text" id="email" name="usrname" placeholder="Username">
+      <small>Error message</small>
+    </div>
+  
+    <div class="textbox">
+      <i class="fas fa-lock"></i>
+      <input class="inpt" type="password" id="password" name="passwd" placeholder="Password">
+      <small>Error message</small>
+    </div>
+  <button type="submit" id="Subm_btn" class="btnsi">Sign in</button>
+    <!-- <input type="submit" class="btnsi" value="Sign in"> -->
+  </form>
+  <p class="signupp" style="  margin-left:2rem ;color: whitesmoke;">Don't have account ? <a style="color: turquoise;" href="/register">register now</a></p>
+  </div>
+</div>
+{% endblock %}

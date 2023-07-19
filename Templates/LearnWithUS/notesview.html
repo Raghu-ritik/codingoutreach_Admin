@@ -1,0 +1,51 @@
+{% extends 'Home/navbar.html' %}
+{% block title %}  NB projects view - For Everyone {% endblock %} 
+{% block cssd %} 
+{% load static %}
+{% static 'LearnWithUS/projview.css' %} 
+{% endblock %}
+{% block jsd %} 
+{% load static %}
+{% static 'Projects1/projview.js' %} 
+{% endblock %}
+{% block body %}
+<div class="container container-content">
+  <section id="About">
+    <div class="about-div">
+        <p class="about-main-p"> {{notes.category}} </p>
+        <h1 class="about-h1">{{notes.notestitle}}</h1>
+        <p class="about-p">{{notes.notedesc}} </p>
+        <button class="btn btn-crea"> - {{notes.branch}}</button>
+    </div>
+    <video class="card-image" width="300" class="img img-n" height="180" controls>
+      <source src="/media/{{ notes.Videofile }}">
+  </video>
+</section>
+
+
+{% if filesup %}
+  <table class="table table-hover">
+   
+      <thead>
+        <tr>
+          <th scope="col">Serial number</th>
+          <th scope="col">File name</th>
+          <th scope="col">Files </th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for files in filesup %}      
+        <tr>
+          <th scope="row">{{ forloop.counter }}</th>
+          <td>{{files.file_title}}</td>
+          <td><a href="/media/{{ files.file }}" download class="btn btn-outline-primary"> File</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    
+  </table>
+  {% endif %}
+</div>
+
+{% endblock %}

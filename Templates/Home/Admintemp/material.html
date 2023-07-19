@@ -1,0 +1,39 @@
+{% extends 'Home\Admintemp\admin_navi.html' %}
+
+{% block secnt %} 
+<a href="/project/input/"><button class="btn btn-primary">Add new project</button> </a>
+<div class="home-box">
+  <div class="overview-boxes">
+    
+{% if project %}
+<table class="table table-hover">
+ 
+    <thead>
+      <tr>
+        <th scope="col">Serial number</th>
+        <th scope="col">Project name</th>
+        <th scope="col">category</th>
+        <th scope="col">creator </th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for fil,lk,ok in project %}
+        {% for files in fil %}      
+          <tr>
+            <th scope="row">{{ forloop.counter }}</th>
+            <td>{{files.projectname}}</td>
+            <td>{{files.category}}</td>
+            <td>{{files.creator}}</td>
+          </tr>
+        {% endfor %}
+      {% endfor %}
+    </tbody>
+  
+</table>
+{% endif %}
+{% endblock %}
+{% block body %}
+
+{% endblock %}
+  </div>
+</div>

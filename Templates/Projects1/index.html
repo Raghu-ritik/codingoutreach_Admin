@@ -1,0 +1,76 @@
+{% extends 'Home/navbar.html' %}
+
+{% block title %}  NB projects - For Everyone {% endblock %} 
+{% block cssd %} 
+{% load static %}
+{% static 'Projects1/index.css' %} {% endblock %}
+{% block jsd %} 
+{% load static %}
+{% static 'Projects1/index.js' %} 
+{% endblock %}
+{% block body %}
+
+
+  {% for pjt,range,nslides in project %}
+  <div class="containr">
+
+    {% for proj in pjt %}
+
+  <div class="card">
+    <div class="card-image"  style="background-image: url('/media/{{ proj.Image }}');" >    </div>
+        <div class="card-text">
+            <span class="date">{{ proj.datecreated | slice:"0:10" }}</span>
+            <h2>{{ proj.projectname  | slice:"0:22"}}..</h2>
+            <p>{{ proj.desc | slice:"0:100" }}...</p>
+        </div>
+        <div  class="card-stats">
+            <button type="button" id="proj{{ proj.projectid }}" class="btn btn-outline-primary btn-nxtpg">Preview </button>
+          <!-- <a href="view/{{proj.projectid}}/">  -->
+            <button type="button" class="btn btn-outline-primary btn-nxtpg" style="margin-left: 2rem;">Enroll Now </button>
+          <!-- </a> -->
+          <!-- <p class="btn-text-en">
+            
+          </p> -->
+        </div>
+      </div>
+      <div class="video-container" id="vid{{ proj.projectid }}">
+        <div class="bg_image"></div>
+        <span class="close" id="close{{ proj.projectid }}">&#10006</span>
+        <!-- <video src="/media/{{ proj.introvideo }}" controls > </video> -->
+        
+        <div class="descrip">
+          <h1>{{ proj.projectname }}</h1>
+          <p >{{ proj.desc }}</p><br>
+          <!-- <a href="view/{{proj.projectid}}/">  -->
+            <button type="button" class="btn btn-outline-primary btn-nxtpg" style="margin-left: 2rem;">Enroll Now </button>
+          <!-- </a> --> </div>
+        </div>
+      <script>
+        // const btn = document.querySelector('.prebtn');
+        const btn{{ proj.projectid }} = document.getElementById('proj{{ proj.projectid }}');
+        // const videoContainer = document.querySelector('.video-container');
+        const videoContainer{{ proj.projectid }} = document.getElementById('vid{{ proj.projectid }}');
+        // const close = document.querySelector('.close');
+        const close{{ proj.projectid }} = document.getElementById('close{{ proj.projectid }}');
+    
+        btn{{ proj.projectid }}.addEventListener('click',()=>{
+            videoContainer{{ proj.projectid }}.classList.add('show');
+        })
+    
+        close{{ proj.projectid }}.addEventListener('click',()=>{
+            videoContainer{{ proj.projectid }}.classList.remove('show');
+        })
+    </script>
+      {% endfor %}  
+  </div>
+{% endfor %}
+<!-- </div> -->
+{% endblock %}
+
+
+
+
+
+
+
+

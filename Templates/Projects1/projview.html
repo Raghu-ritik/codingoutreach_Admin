@@ -1,0 +1,51 @@
+{% extends 'Home/navbar.html' %}
+{% block title %}  NB projects view - For Everyone {% endblock %} 
+{% block cssd %} 
+{% load static %}
+{% static 'Projects1/projview.css' %} 
+{% endblock %}
+{% block jsd %} 
+{% load static %}
+{% static 'Projects1/projview.js' %} 
+{% endblock %}
+{% block body %}
+<div class="container">
+  <section id="About">
+    <div class="about-div">
+        <p class="about-main-p"> {{project.category}} </p>
+        <h1 class="about-h1">{{project.projectname}}</h1>
+        <p class="about-p">{{project.desc}} </p>
+        <button class="btn btn-crea"> - {{project.creator}}</button>
+    </div>
+    <img src="/media/{{ project.Image }}" class="img img-n" alt="{{project.projectname}}">
+</section>
+
+
+{% if filesup %}
+  <table class="table table-hover">
+   
+      <thead>
+        <tr>
+          <th scope="col">Serial number</th>
+          <th scope="col">File name</th>
+          <th scope="col">cover Image</th>
+          <th scope="col">Files </th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for files in filesup %}      
+        <tr>
+          <th scope="row">{{ forloop.counter }}</th>
+          <td>{{files.filename}}</td>
+          <td><img src="/media/{{files.coverup }}" alt="{{files.filename}}" download style="width:100px; height: 100px" ></td>
+          <td><a href="/media/{{ files.fileup }}" download class="btn btn-outline-primary"> Document</a>
+          </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    
+  </table>
+  {% endif %}
+</div>
+
+{% endblock %}

@@ -1,0 +1,267 @@
+{% extends 'Home/navbar.html' %}
+{% block title %}  CodingOutreach - For Everyone {% endblock %} 
+{% block cssd %} 
+{% load static %}
+{% static '' %} {% endblock %}
+{% block body %}
+<style>
+	.profile-pic{
+		max-width: 200px;
+		max-height:200px;
+		margin: 0 auto;
+		border-radius: 50%;
+	}
+	.img_carsimg{
+		max-width: 200px;
+		max-height: 200px;
+	}
+	
+.video-container{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 99999;
+    background-color: rgb(17, 16, 15);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.3s;
+}
+.bg_image{
+    filter: blur(8px);
+    -webkit-filter: blur(8px); 
+    filter: blur(8px);
+    -webkit-filter: blur(8px);
+    height: 100vh;
+}
+.descrip{
+    width: 80%;
+    text-align: center;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-style: italic;
+    color:white;
+}
+.video-container .close{
+    position: absolute;
+    top: 10%;
+    right: 25px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+.video-container video{
+    width: 90%;
+    max-width: 800px;
+    transform: scale(0);
+    box-shadow: 0 20px rgb(0,0,0,0.2);
+    outline: none;
+    transition: all 0.3s;
+}
+.video-container.show{
+    pointer-events: all;
+    opacity: 1;
+}
+
+.video-container.show video{
+ transform: scale(1);
+}
+</style>
+
+<br>
+<div class="row">
+	<div class="col-md-3">
+		<div class="card card-body">
+			<a class="btn btn-warning" href="{% url 'home' %}"> &#8592; Back to Home</a>
+			<hr>
+			<h3 style="text-align: center">Account Settings</h3>
+			<hr>
+			<img class="profile-pic" src="/media/{{ profile.profile_pic }}" >
+		
+		</div>
+	</div>
+	<div class="col-md-9">
+		<div class="card card-body">
+			<form method="POST" action="" enctype="multipart/form-data">
+				{% csrf_token %}
+					<div class="form-group row">
+					  <label for="name1" class="col-sm-2 col-form-label">Name</label>
+					  <div class="col-sm-10">
+						<input type="text" class="form-control" id="name1" placeholder="{{profile.name}} ">
+					  </div>
+					</div>
+					<div class="form-group row">
+					  <label for="email2" class="col-sm-2 col-form-label">Email Address</label>
+					  <div class="col-sm-10">
+						<input type="email" class="form-control" id="email2" placeholder="{{profile.email}}">
+					  </div>
+					</div>
+					{% if profile.mobno == none %}
+					<form method="POST" action="" name="phone_number" enctype="multipart/form-data">
+						{% csrf_token %}
+						<div class="form-group row">
+							<label for="phoneno" class="col-sm-2 col-form-label">Phone Number</label>
+							<div class="col-sm-10">
+							  <input type="number" name="phonenumber" style="width: 90%; display: inline-block;" class="form-control" id="phoneno" placeholder="update phone number">
+							  <input class="btn btn-primary" type="submit" name="Update Information">
+							   
+							</div>
+						  </div>
+					</form>
+					{% else %}
+					<div class="form-group row">
+						<label for="phoneno" class="col-sm-2 col-form-label">Phone Number</label>
+						<div class="col-sm-10">
+						  <input type="number" class="form-control" id="phoneno" placeholder="{{profile.mobno}}">						   
+						</div>
+					  </div>
+					  {% endif %}
+			<form method="POST" action="" name="update_image" enctype="multipart/form-data">
+				{% csrf_token %}
+					  <div class="form-group row">
+						<label for="profilepic1" class="col-sm-2 col-form-label">Profile Picture</label>
+						<div class="col-sm-10">
+						  <input type="file" class="form-control" name="profilepic" id="profilepic1" >
+						</div>
+					  </div>
+		
+			<input class="btn btn-primary" type="submit" name="Update Information">
+			</form>
+		</div>
+	</div>
+</div>
+
+<div class="row">
+	<div class="col">
+		<div class="col-md">
+			<div class="card text-center text-white  mb-3" id="total-orders" style="background-color: #4cb4c7;"> 
+			  	<div class="card-header">
+			  		<h5 class="card-title">Projects Enrolled</h5>
+			  	</div>
+			  	<div class="card-body">
+			    	<h3 class="card-title">{{ courlled }}</h3>
+			  	</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="col">
+		<div class="col-md">
+			<div class="card text-center text-white  mb-3" id="orders-delivered" style="background-color: #7abecc;">
+			  	<div class="card-header">
+			  		<h5 class="card-title">Refrral Projects</h5>
+			  	</div>
+			  	<div class="card-body">
+			    	<h3 class="card-title">{{refrealproj}}</h3>
+			  	</div>
+			</div>
+		</div>
+	</div>
+
+	<div class="col">
+		<div class="col-md">
+			<div class="card text-center text-white  mb-3" id="orders-pending" style="background-color: #7CD1C0;">
+			  	<div class="card-header">
+			  		<h5 class="card-title">Message</h5>
+			  	</div>
+			  	<div class="card-body">
+			    	<h3 class="card-title">{{messagepro}}</h3>
+			  	</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+			<table class="table table-sm">
+				<tr>
+					<th>S.no</th>
+					<th>Project name</th>
+					<th>Preview</th>
+					<th>Project category</th>
+					<th>Resources</th>
+				</tr>
+				{% if courlled == 0 %}
+				<tr>
+					<td colspan="5" style="text-align: center;">You are not Enrolled in any of the project...</td>
+				</tr>
+				{% endif %}
+				{% for projec in courenorl %}
+				<tr>
+					<td>{{ forloop.counter }}</td>
+					<td>{{ projec.projectname }}</td>
+					<td> <button type="button" id="proj{{ projec.projectid }}" class="btn btn-outline-primary btn-nxtpg">Preview </button></td>
+					<td>{{ projec.category }}</td>
+					<td><a href="/project/view/{{projec.projectid}}/"> 
+						<button type="button" class="btn btn-outline-primary btn-nxtpg" >Go to Project </button>
+					  	</a>
+					</td>
+					<div class="video-container" id="vid{{ projec.projectid }}">
+						<div class="bg_image"></div>
+						<span class="close" id="close{{ projec.projectid }}">&#10006</span>
+						<!-- <video src="/media/{{ proj.introvideo }}" controls > </video> -->
+						
+						<div class="descrip">
+						  <h1>{{ projec.projectname }}</h1>
+						  <p >{{ projec.desc }}</p></div>
+					  </div>
+					  <script>
+						// const btn = document.querySelector('.prebtn');
+						const btn{{ projec.projectid }} = document.getElementById('proj{{ projec.projectid }}');
+						// const videoContainer = document.querySelector('.video-container');
+						const videoContainer{{ projec.projectid }} = document.getElementById('vid{{ projec.projectid }}');
+						// const close = document.querySelector('.close');
+						const close{{ projec.projectid }} = document.getElementById('close{{ projec.projectid }}');
+					
+						btn{{ projec.projectid }}.addEventListener('click',()=>{
+							videoContainer{{ projec.projectid }}.classList.add('show');
+						})
+					
+						close{{ projec.projectid }}.addEventListener('click',()=>{
+							videoContainer{{ projec.projectid }}.classList.remove('show');
+						})
+					</script>
+				</tr>
+				{% endfor %}
+			</table>
+		</div>
+	</div>
+</div>
+{% if grpusr == "Buyer" %}
+<div class="row">
+	<div class="col-md">
+		<div class="card card-body">
+			<table class="table table-sm">
+				<tr>
+					<th>Car Owner Id </th>
+					<th>Car Brand</th>
+					<th>Car Model</th>
+					<th>Category</th>
+					<th>Car Image</th>
+
+				</tr>
+
+
+				{% for messa in carvisit %}
+				<tr>
+					<th>{{messa.sellerid_id}}</th>
+					<td>{{messa.CarBrand}}</td>
+					<td>{{messa.Model}}</td>
+					<td>{{messa.category}}</td>
+					<td><img class="img_carsimg" src="/media/{{ messa.image }}" ></td>
+
+				</tr>
+				{% endfor %}
+			</table>
+		</div>
+	</div>
+</div>
+{% endif %}
+
+
+{% endblock %}

@@ -1,0 +1,90 @@
+{% extends 'Home/navbar.html' %}
+
+{% block title %}  NB projects - For Everyone {% endblock %} 
+{% block cssd %} 
+{% load static %}
+{% static 'Projects1/input.css' %} {% endblock %}
+{% block body %}
+<div class="container mt-2">
+
+    <form action="" name="projectinpform" method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+        <div class="fom">
+            <div class="form-group row mb-1">
+                <label for="name1" class="col-sm-2 col-form-label">Project Name :</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="name1" name="projname" placeholder="Projectname">
+                </div>
+              </div>              
+            <div class="form-group row mb-1">
+                <label for="category" class="col-sm-2 col-form-label">Project category </label>
+                <div class="col-sm-10">
+                    <select id="inputcategory" class="form-select" name="category" >
+                        <option value="Web development">Web development</option>
+                        <option value="Machine learning">Machine learning</option>
+                        <option value="Data Science">Data Science</option>
+                        <option value="PHP">PHP</option>
+                        <option value="C/C++">C/C++</option>
+                        <option value="Others">Others</option>
+                    </select>
+                </div>
+              </div>
+
+            <div class="form-group row mb-1">
+                <label for="desc" class="col-sm-2 col-form-label">Enter the description : </label>
+                <div class="col-sm-10">
+                  <textarea name="desc" id="desc" class="form-control" placeholder="Description " id="" cols="60" rows="3"></textarea>
+                </div>
+              </div>
+              <div class="form-group row mb-1">
+                <label for="name1" class="col-sm-2 col-form-label">creator name :</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="name1" name="creatorname" placeholder="creator">
+                </div>
+              </div>
+              <div class="form-group row mb-1">
+                <label for="name1" class="col-sm-2 col-form-label">Date and Time : </label>
+                <div class="col-sm-10">
+                  <input type="datetime-local" class="form-control" id="name1" name="dateandtime">
+                </div>
+              </div>
+              <div class="form-group row mb-1">
+                <label for="name1" class="col-sm-2 col-form-label">Purpose:</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="name1" name="Purpose" placeholder="Purpose">
+                </div>
+              </div>
+            <div class="form-group row mb-1">
+                <label for="name1" class="col-sm-2 col-form-label">Avalibility : </label>
+                <div class="col-sm-10">
+                    <select name="Availability" id="inputState" class="form-select">
+                        <option value="True">Yes</option>
+                        <option value="False">No</option>
+                    </select>                </div>
+              </div>
+            <div class="form-group row mb-1">
+                <label for="name1" class="col-sm-2 col-form-label">project image :</label>
+                <div class="col-sm-10">
+                  <input type="file" class="form-control" id="name1" name="projimage" placeholder="Projectname">
+                </div>
+            </div>
+            <div class="form-group row mb-1">
+                <label for="rating1" class="col-sm-2 col-form-label">Rating</label>
+                <div class="col-sm-10">
+                  <input type="text" class="form-control" id="rating1" name="rating" placeholder="Rating">
+                </div>
+              </div>
+            <div class="form-group row mb-1">
+                <label for="name1" class="col-sm-2 col-form-label">project video : </label>
+                <div class="col-sm-10">
+                <input type="file" class="form-control" id="name1" name="projvideo" placeholder="Projectname">
+                </div>
+            </div>
+            <div class="d-grid gap-2 col-6 mx-auto mt-4">
+                <button class="btn btn-outline-primary" type="submit">Button</button>
+              </div>
+        </div>
+    </form>
+</div>
+This is input form
+{% endblock %}

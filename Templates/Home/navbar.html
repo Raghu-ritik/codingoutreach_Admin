@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="shortcut icon" href="static\images\Coding outreac-logo.png" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com"  crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Comforter&family=Yellowtail&display=swap" rel="stylesheet">
+   
+    <title>{% block title %} {% endblock %}</title>
+
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'css\bootstrap.min.css' %}">
+    {% load static %}
+    <script src="{% static 'js\bootstrap.min.js' %}" ></script>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'navbar.css' %}" /> 
+    {% load static %}
+    <link rel="stylesheet" href="{% block cssd %} {% endblock %}" /> 
+    <style>
+      img.logoimg1{
+        position:absolute;
+        width:5rem;
+        top:20px;
+        left:20px;
+      }
+ 
+      div.navbar-collapse{
+        margin-left:100px;
+      }
+      nav.navbar{
+        background-color: #1B65A7;
+      }
+      li.nav-item a{
+        color:#fff;
+      }
+      li.nav-item a:hover{
+        color:#fff;
+        background-color: #065da8;
+        border-radius:20px;
+      }
+      .btn-outl{
+        color:#fff;
+        border-color:#fff;
+      }
+      .btn-outl :hover{
+        color:#fff;
+        background-color: #065da8;
+        border-radius:40px;
+      }
+      .d-block{
+        height:78vh;
+      }
+      .hiddenclassNormal{
+        display:none;
+      }
+      .lead{
+        color: #fff;
+        background-color: rgba(29, 101, 167,0.7);
+        padding: 10px;
+        border-radius:20px;
+        text-align:center;
+      }
+      .sec{
+        padding: 70px 0 70px 0;
+      }
+      .sec h2.section-head{
+          color:#040615;
+          text-align:center;
+          margin-bottom: 40px;
+      }
+      .sec h2.section-head:after{
+          background-color: #065da8;
+          display: block;
+          width: 100px;
+          height: 3px;
+          margin: 20px auto;
+      }    
+      .service-box{
+        text-align: center;
+      }
+      .service-box i.fa{
+        color: #1B65A7;
+        font-size: 70px;
+        margin-bottom: 1rem;
+      }
+      #Footer-sidebar{
+        color:#ffff;
+        background-color: #065da8;
+        padding: 20px 0;
+    }
+    .footer-widget h4:after{
+        content: "";
+        background: #fff;
+        display: block;
+        width: 60px;
+        height: 2px;
+        margin: 5px 0;
+    }
+    .footer-widget a{
+        color: #fff;
+    }
+    .latest-News{
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    .latest-News li{
+        margin-bottom: 3px;
+    }
+    .latest-News li:before{
+        content: "\f101";
+        font-family: FontAwsome;
+        padding-right:5px ;
+    }
+    .latest-News li a{
+      text-decoration:none;
+    }
+    
+      #footer{
+        color: #fff;
+        background: #1B65A7;
+        pad: 10px 0;
+    }
+    #Social-icon{
+        list-style: none;
+        color: #fff;
+        margin: 0;
+        padding: 0;
+    }
+    #Social-icon li{
+        display: inline-block;
+        padding-left: 5px;
+    }
+    #Social-icon li a{
+        color: #fff;
+        font-size: 1.4rem;
+    
+    }
+    .dropdown-menu{
+      background: #1B65A7;
+    }
+    @media (max-width:960px) {
+      .d-block{
+        height:38vh;
+      }
+      .hiddenclassNormal{
+        display:flex;
+        margin:20px 20px;
+      }
+      .news-post{
+        margin-bottom: 30px;
+      }
+      .news-post img{
+          height: 400px;
+          width: 90%;
+          margin-bottom: 10px;
+      }
+      .footer-widget{
+        margin-bottom: 20px;
+    }
+    #footer{
+        text-align: center;
+    }
+    #social-icons{
+        margin-top: 10px;
+    }
+    
+  .navbar-toggler{
+    margin-left:auto;
+    color:#fff;
+  }
+  button:focus:not(:focus-visible) {
+    outline: 0;
+}
+.navbar-toggler:focus {
+  text-decoration: none;
+  outline: 0;
+  box-shadow: 0 0 0 0;
+  }
+  .logSign{
+    margin:0.4rem 0rem 0rem 0rem;
+  }
+  .dropdown-menu{
+    background: #1B65A7;
+  }
+    }
+
+      @media (max-width:768px) {
+        .d-block{
+          height:38vh;
+        }
+        .hiddenclassNormal{
+          display:flex;
+          margin:20px 20px;
+        }
+        .news-post{
+          margin-bottom: 30px;
+        }
+        .news-post img{
+            height: 400px;
+            width: 90%;
+            margin-bottom: 10px;
+        }
+        .footer-widget{
+          margin-bottom: 20px;
+      }
+      #footer{
+          text-align: center;
+      }
+      #social-icons{
+          margin-top: 10px;
+      }
+      
+    .navbar-toggler{
+      margin-left:auto;
+      color:#fff;
+    }
+    button:focus:not(:focus-visible) {
+      outline: 0;
+  }
+  .navbar-toggler:focus {
+    text-decoration: none;
+    outline: 0;
+    box-shadow: 0 0 0 0;
+    }
+    .logSign{
+      margin:0.4rem 0rem 0rem 0rem;
+      color:#fff
+    }
+    .dropdown-menu{
+      background: #1B65A7;
+    }
+      }
+
+      
+    </style>
+  </head>
+  <body>
+    <!-- navbar starts -->
+    <nav class="navbar navbar-expand-lg  mad">
+      <img src="static\images\Coding outreac-logo (1).png" class="logoimg1" alt="CodingOutreach" />
+            
+      <div class="container-fluid mad">
+          
+          <button
+          class="navbar-toggler fa fa-window-restore"
+            type="button"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent"
+            aria-expanded="false"
+            aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 ">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/aboutus">About</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="/contactus">Contact</a>
+                </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle"
+                  href="#"
+                  id="navbarDropdown"
+                  role="button"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  Explore
+                </a>
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="/project">Projects</a></li>
+                  <li><a class="dropdown-item" href="/products">DL solutions</a></li>
+                  <li><a class="dropdown-item" href="/LearnWithUS">Learn With us</a></li>
+                </ul>
+              </li>
+            </ul>
+            <form class="d-flex mx-2" action="/search/" method="get">
+              <input
+                class="form-control me-2"
+                type="search"
+                placeholder="Search"
+                aria-label="Search"
+                name="query"/>
+              <button class="btn btn-outl " type="submit">Search</button>
+            </form>
+              {% if user.is_authenticated %}
+              <div class="dropdown">
+                <button class="btn btn-outline-primary ml-2" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                  Welcome {{request.user}}
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                  {% if request.user.is_superuser %}
+                  <li><a class="dropdown-item" href="adminpageforadmin">Admin Panel</a></li>
+                  {% else %}
+                  <li><a class="dropdown-item" href="/usrpage/{{request.user}}">Profile</a></li>
+                  {% endif %}
+                  <li><a class="dropdown-item" href="/logout">Logout</a></li>
+              </ul>
+              </div>
+         
+                {% else %}
+                  <!-- Button to  trigger Login modal -->
+                    <a href="/login"><button type="button" class="btn btn-outl mx-2 logSign">Login</button></a>
+                    <a href="/register"><button type="button " class="btn btn-outl logSign">Register</button></a>
+                      {% endif %}  
+             
+              
+            </div>
+          </div>
+        </div>
+      </nav>
+
+      <!-- navbar ends -->
+      {% for message in messages  %}  
+      <div class="alert alert-{{ message.tags }} alert-dismissible fade show mb-0" role="alert">
+        <strong>Message : </strong>  {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>
+      {% endfor %}
+    {% block body %} {% endblock %}
+<!-- foorter -->
+<div id="Footer-sidebar">
+  <div class="container">
+      <div class="row">
+          <div class="col-md-4 col-sm-6">
+              <div class="footer-widget">
+                  <h4>About Company</h4>
+                  <p>We are an it company providing the project solutions and also after the project assitant .</p>
+                  <p>Working with us could be an wonderful opprtunity for person out there , our Team provides 24x7 assitant. </p>
+              </div>
+          </div>
+          <div class="col-md-4 col-sm-6">
+              <div class="footer-widget">
+                  <h4>Quick Links</h4>
+                  <ul class="latest-News">
+                      <li><a href="/">Home</a></li>
+                      <li><a href="/contactus">Contactus</a></li>
+                      <li><a href="/project">Project</a></li>
+                      <li><a href="/products">DL solutions</a></li>
+                      <li><a href="/LearnWithUS">Learn with us</a></li>
+                  </ul>    
+              </div>
+          </div>
+          <div class="col-md-4 col-sm-6">
+              <div class="footer-widget">
+                  <h4>Company Address</h4>
+                  <address>
+                      <b>CodingOutreach co.</b><br>
+                      Z-30 Civil lines, Polytecnic main road <br>
+                      Shyamla Hills Bhopal M.P. 462008<br>
+                      contact us at : info@codingoutreach.com 
+                  </address>    
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
+<!-- footer ends -->
+<!-- foot  -->
+<div id="footer">
+  <div class="container">
+      <div class="row">
+          <div class="col-md-6">copyright@2022 CodingOutreach.co</div>
+          <div class="col-md-6">
+              <ul id="Social-icon" class="float-md-right">
+                  <li><a href="" class="fa fa-facebook-square"></a></li>
+                  <li><a href="" class="fa fa-linkedin-square"></a></li>
+                  <li><a href="" class="fa fa-instagram"></a></li>
+              </ul>
+          </div>
+      </div>
+  </div>
+</div>
+<!-- foot ends  -->
+
+
+
+
+        <script src="{% block jsd %} {% endblock %}" ></script> 
+  </body>
+</html>

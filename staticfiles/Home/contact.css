@@ -1,0 +1,85 @@
+.custom-shape-divider-top-1640884082 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.custom-shape-divider-top-1640884082 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 198px;
+}
+
+.custom-shape-divider-top-1640884082 .shape-fill {
+    fill: deepskyblue;
+}
+.custom-shape-divider-bottom-1640884130 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+}
+
+.custom-shape-divider-bottom-1640884130 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 198px;
+}
+
+.custom-shape-divider-bottom-1640884130 .shape-fill {
+    fill: deepskyblue;
+}
+
+.conta{
+    /* margin-top: 4vh; */
+    width: 90%;
+    padding: 6rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    box-sizing:border-box;
+    flex-wrap: wrap;
+}
+.img-envl{
+    max-width: 32%;
+    max-height: 32%;
+}
+.fom{
+    width: 40%;
+    height: 20rem;
+}
+
+.tele-btn{
+    background-color: transparent;
+    border: none;
+}
+.tele-icon{
+    height: 3rem;
+    width: 3rem;
+    margin-left: 20rem;
+}
+
+@media(max-width:500px){
+    body{
+        background-color: transparent;
+    }
+}
+@media(min-width:501px) and (max-width:1024){
+    body{
+        background-color: transparent;
+    }
+}
+@media(min-width:1025){
+    body{
+        background-color: transparent;
+    }
+}

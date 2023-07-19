@@ -1,0 +1,39 @@
+*{
+    margin: 0px;
+    padding: 0px;
+}
+.head-hd{
+    font-family: sans-serif;
+    color: white;
+    padding: 5vh;
+}
+.custom-shape-divider-bottom-1640875033 {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+}
+.btn1{
+    margin: 2vh 5vh;
+    padding: 1vh;
+    border-radius: 100px;
+    
+}
+.btn1:hover{
+    background-color: white;
+    color: green;
+}
+
+.custom-shape-divider-bottom-1640875033 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 186px;
+}
+
+.custom-shape-divider-bottom-1640875033 .shape-fill {
+    fill: #FFFFFF;
+}

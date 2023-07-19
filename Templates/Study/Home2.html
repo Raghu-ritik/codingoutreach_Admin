@@ -1,0 +1,76 @@
+{% extends 'Home/navbar.html' %}
+
+{% block title %}  NB projects - For Everyone {% endblock %} 
+{% block cssd %} 
+{% load static %}
+{% static 'Study/Home2.css' %} {% endblock %}
+{% block jsd %} 
+{% load static %}
+{% static 'Projects1/index.js' %} 
+{% endblock %}
+{% block body %}
+
+
+  {% for notes,range,nslides in allnos %}
+  <div class="containr">
+
+    {% for note in notes %}
+    <!-- style="background-image: url('/media/{{ note.Image }}');"  -->
+  <div class="card">
+    <div class="card-image"  > <iframe src="{{ note.youtubevideolink }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>   </div>
+        <div class="card-text">
+            <h2>{{ note.notestitle  | slice:"0:22"}}..</h2>
+            <p>{{ note.notedesc | slice:"0:100" }}...</p>
+        </div>
+        <div  class="card-stats">
+            <button type="button" id="note{{ note.notesid }}" class="btn btn-outline-primary btn-nxtpg">Preview </button>
+          <a href="notesview/{{note.notesid}}/"> 
+            <button type="button" class="btn btn-outline-primary btn-nxtpg" style="margin-left: 2rem;">Buy Now </button>
+          </a>
+          <!-- <p class="btn-text-en">
+            
+          </p> -->
+        </div>
+      </div>
+      <div class="video-container" id="vid{{ note.notesid }}">
+        <div class="bg_image"></div>
+        <span class="close" id="close{{ note.notesid }}">&#10006</span>
+        <!-- <video src="/media/{{ proj.introvideo }}" controls > </video> -->
+        
+        <div class="descrip">
+          <h1>{{ note.notestitle }}</h1>
+          <p >{{ note.notedesc }}</p><br>
+          <a href="notesview/{{note.notesid}}/"> 
+            <button type="button" class="btn btn-outline-primary btn-nxtpg" style="margin-left: 2rem;">Buy Now </button>
+          </a>
+        </div>
+      </div>
+      <script>
+        // const btn = document.querySelector('.prebtn');
+        const btn{{ note.notesid }} = document.getElementById('note{{ note.notesid }}');
+        // const videoContainer = document.querySelector('.video-container');
+        const videoContainer{{ note.notesid }} = document.getElementById('vid{{ note.notesid }}');
+        // const close = document.querySelector('.close');
+        const close{{ note.notesid }} = document.getElementById('close{{ note.notesid }}');
+    
+        btn{{ note.notesid }}.addEventListener('click',()=>{
+            videoContainer{{ note.notesid }}.classList.add('show');
+        })
+    
+        close{{ note.notesid }}.addEventListener('click',()=>{
+            videoContainer{{ note.notesid }}.classList.remove('show');
+        })
+    </script>
+      {% endfor %}  
+  </div>
+{% endfor %}
+<!-- </div> -->
+{% endblock %}
+
+
+
+
+
+
+
+

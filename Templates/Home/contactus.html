@@ -1,0 +1,50 @@
+{% extends 'Home/navbar.html' %}
+{% block title %} CodingOutreach - For Everyone {% endblock %} 
+{% block cssd %} 
+{% load static %}
+{% static 'Home\contact.css' %} {% endblock %}
+{% block body %}
+
+
+<div class="container">
+  <div class="wrapper">
+    <div class="row">
+      <div class="col-md-6"> 
+        <h2 class="mainhead">Contact us..</h2>
+        <div class="feature-box">
+            <form action="" method="POST" >
+               {% csrf_token %}
+              <div class="row">
+                <div class="col-md-12"><label for="Email">Email</label></div>
+                <div class="col-md-12"><input type="text" id="email1" name="emailadd" placeholder="Email"></div>
+              </div>
+              <div class="row">
+                <div class="col-md-12"><label for="FulName">Full Name</label></div>
+                <div class="col-md-12"><input type="text" name="Fulname" id="name1" placeholder="Full Name"></div>
+              </div>
+              <div class="row">
+                <div class="col-md-12"><label for="FulName">Contact Number</label></div>
+                <div class="col-md-12"><input type="text" id="contactno1" name="contctno" placeholder="Contact Number "></div>
+              </div>
+              <div class="row">
+                <div class="col-md-12"><label for="mesage">Message</label></div>
+                <div class="col-md-12"><textarea name="" id="feedba1"  class="form-control" name="descrip" rows="3" cols="17" placeholder="Your feedback/Message ..."></textarea></div>
+              </div>
+              <div class="row">
+                <div class="col-md-12">
+                        <button type="submit" class="sbubtn">submit</button>
+                </div>
+              </div>
+            </form>
+        </div>
+      </div>
+      <div class="col-md-6">
+        <img src="static\images\undraw_innovative_re_rr5i.svg" alt="" srcset="" class="imgrig"> 
+      </div>
+    </div>
+  </div>
+</div>
+<img src="static\images\wave.svg" alt="Waves" srcset="" class="wave-img">
+
+
+{% endblock%}

@@ -1,0 +1,13 @@
+{% extends 'Home/navbar.html' %}
+{% block title %} Contact us 2{% endblock %} 
+{% block body %}
+
+<div class="container">
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{ form.as_p }} 
+        <button type="submit" class="btn btn-primary"></button>
+    </form>
+</div>
+
+{% endblock %}

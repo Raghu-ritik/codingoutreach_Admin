@@ -1,0 +1,71 @@
+{% extends 'Home/navbar.html' %}
+
+{% block title %}  CodingOutreach - Coding smith's on move {% endblock %} 
+{% block cssd %}
+{% load static %}
+{% static 'LearnWithUS/Home2.css' %} {% endblock %}
+{% block jsd %} 
+{% load static %}
+{% static 'Projects1/index.js' %} 
+{% endblock %}
+{% block body %}
+
+
+  {% for notes,range,nslides in allnos %}
+  <div class="containr">
+
+    {% for note in notes %}
+  <div class="card">
+      <video class="card-image" width="300" height="180" controls>
+          <source src="/media/{{ note.Videofile }}">
+      </video>
+        <div class="card-text">
+            <h2>{{ note.notestitle  | slice:"0:22"}}..</h2>
+            <p>{{ note.notedesc | slice:"0:100" }}...</p>
+        </div>
+        <div  class="card-stats">
+            <button type="button" id="note{{ note.LearnModelid }}" class="btn btn-outline-primary btn-nxtpg">Preview </button>
+          <a href="LearnView/{{note.LearnModelid}}/"> 
+            <button type="button" class="btn btn-outline-primary btn-nxtpg" style="margin-left: 2rem;">Buy Now </button>
+          </a>
+        </div>
+      </div>
+      <div class="video-container" id="vid{{ note.LearnModelid }}">
+        <div class="bg_image"></div>
+        <span class="close" id="close{{ note.LearnModelid }}">&#10006</span>
+        <!-- <video src="/media/{{ proj.introvideo }}" controls > </video> -->
+        
+        <div class="descrip">
+          <h1>{{ note.notestitle }}</h1>
+          <p >{{ note.notedesc }}</p><br>
+          <a href="LearnView/{{note.LearnModelid}}/"> 
+            <button type="button" class="btn btn-outline-primary btn-nxtpg" style="margin-left: 2rem;">Buy Now </button>
+          </a>
+        </div>
+      </div>
+      <script>
+        const btn{{ note.LearnModelid }} = document.getElementById('note{{ note.LearnModelid }}');
+        const videoContainer{{ note.LearnModelid }} = document.getElementById('vid{{ note.LearnModelid }}');
+        const close{{ note.LearnModelid }} = document.getElementById('close{{ note.LearnModelid }}');
+    
+        btn{{ note.LearnModelid }}.addEventListener('click',()=>{
+            videoContainer{{ note.LearnModelid }}.classList.add('show');
+        })
+    
+        close{{ note.LearnModelid }}.addEventListener('click',()=>{
+            videoContainer{{ note.LearnModelid }}.classList.remove('show');
+        })
+    </script>
+      {% endfor %}  
+  </div>
+{% endfor %}
+<!-- </div> -->
+{% endblock %}
+
+
+
+
+
+
+
+

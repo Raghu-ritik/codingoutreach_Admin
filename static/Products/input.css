@@ -1,0 +1,14 @@
+.container{
+    background-color: gray;
+    border-radius: 2rem;
+    padding: 3rem;
+}
+
+.fom{
+    width: 92%;
+    background-color: rgba(187, 179, 179, 0.61);
+    padding: 3rem;
+    margin: 2rem;
+    align-content: center;
+    border-radius: 1rem;
+}

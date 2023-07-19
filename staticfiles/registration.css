@@ -1,0 +1,100 @@
+*{
+    margin: 0;
+    padding: 0;
+    font-family: sans-serif;
+}
+.cont{
+    width: 99.9vw;
+    height: 84.8vh;
+    padding: 8% auto;
+    font-family: sans-serif;
+    background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),url(images/mountains.jpg);
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.contain{
+    width: 360px;
+    height: 400px;
+    background-color: transparent;
+    position: relative;
+    overflow: hidden;
+}
+.CAcco{
+    color: white;
+    text-align: center;
+}
+
+.form-control1 {
+    margin-bottom: 10px;
+	padding-bottom: 15px;
+	position: relative;
+}
+.form-control1 input {
+    width: 100%;
+    padding: 10px 5px;
+    margin: 5px 0;
+    border:0;
+    border-bottom: 1px solid #999;
+    outline: none;
+    background: transparent;
+}
+.form-control1 input::placeholder {
+    color: white;
+}
+.form-control1 input {
+    color: white;
+}
+
+.form-control1 input:focus {
+	outline: 0;
+	border-color: #777;
+}
+
+.form-control1.success input {
+	border-color: #2ecc71;
+}
+
+.form-control1.error input {
+	border-color: #e74c3c;
+}
+
+.form-control1 small {
+	color: #e74c3c;
+	position: absolute;
+	bottom: 7;
+	left: 0;
+    margin-top: 52px;
+    visibility: hidden;
+}
+
+.form-control1.error small {
+	visibility: visible;
+}
+.btn-box{
+    width: 100%;
+    margin: 30px auto;
+    text-align: center;
+}
+.btn_dire{
+    width: 110px;
+    height: 35px;
+    margin: 0 10px;
+    background: linear-gradient(to right,#ff105f,#ffad06);
+    border-radius: 30px;
+    border: 0;
+    outline: none;
+    color: #fff;
+    cursor: pointer;
+}
+.signp{
+    padding-left: 8rem;
+    color: whitesmoke;
+}
+.signp a:visited,.signp a:link{
+    color: white;
+}
+.signp a:active,.signp a:hover{
+    color: turquoise;
+}
