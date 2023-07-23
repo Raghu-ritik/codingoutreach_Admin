@@ -63,7 +63,9 @@ def ProductIndex(request):
             nslides = n//3 + ceil((n/3)-(n//3))
             allproducts.append([ppjj,range(1,n), nslides])
             
-        return render(request,'Products/index.html',{'Projects':allproducts})
+        if len(allproducts):
+            return render(request,'Products/index.html',{'Projects':allproducts})
+        return render(request,'generalPages\commingSoonPage.html')
     # except:
     #     return HttpResponse("There is some error at server please try again later !")
 

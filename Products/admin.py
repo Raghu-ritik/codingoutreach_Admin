@@ -26,4 +26,4 @@ class CustomProjects(admin.ModelAdmin):
 
 # admin.site.register(Projects1)
 # admin.site.register(Pelcon)
-admin.site.register(Content)
+# admin.site.register(Content)

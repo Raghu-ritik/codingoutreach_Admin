@@ -2,8 +2,7 @@ from django.contrib import admin
 
 # Register your models here.
 from .models import(notes1,notesfile)
-# admin.site.register(notes1)
-admin.site.register(notesfile)
+# admin.site.register(notesfile)
 
 
 class NotesInline(admin.TabularInline):

@@ -18,6 +18,10 @@ from django.urls import path,include
 from django.conf import settings
 from django.conf.urls.static import static
 
+admin.site.site_header = "CodingOutreach Admin"
+admin.site.site_title = "CodingOutreach Admin"
+admin.site.index_title = "Welcome to CodingOutreach Admin"
+
 urlpatterns = [
     path('adminpageforadmin/', admin.site.urls),
     path('',include('Home.urls')),

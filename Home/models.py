@@ -11,6 +11,9 @@ class Contact(models.Model):
     contactno = models.CharField(max_length=25,validators=[phone_regex])
     query = models.TextField()
 
+    def __str__(self) -> str:
+        return str(self.email) + " <--> " + str(self.contactno)
+
 
 class Student_B(models.Model):
     CATEGORY = (
@@ -54,5 +57,5 @@ class SocialLinks(models.Model):
 class Courseenrolled(models.Model):
 
     CEid = models.AutoField(primary_key=True)
-    profileId = models.ForeignKey(User,blank=True,on_delete=models.CASCADE,null=True)
-    courseid = models.ManyToManyField(Projects1,blank=True)
+    profileId = models.ForeignKey(User,verbose_name="User ID",blank=True,on_delete=models.CASCADE,null=True)
+    courseid = models.ManyToManyField(Projects1,verbose_name="Courses Enrolled ID",blank=True)
