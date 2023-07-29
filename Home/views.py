@@ -9,7 +9,7 @@ from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth import login as auth_login
 from django.contrib.auth.models import Group
 from django.db import IntegrityError
-from .models import Student_B,SocialLinks,Courseenrolled
+from .models import Student_B,SocialLinks,ProjectsEnrolled
 from django.contrib import messages
 from random import randint
 import re,math
@@ -212,8 +212,8 @@ def Userpage(request,usrname):
         # print(couenrl[0])
         courseenrol = []
         try:
-            couenrl =  Courseenrolled.objects.filter(profileId=loginuser1).values()
-            ccc = Courseenrolled.objects.get(CEid=3)
+            couenrl =  ProjectsEnrolled.objects.filter(profileId=loginuser1).values()
+            ccc = ProjectsEnrolled.objects.get(CEid=3)
             allenrol = ccc.courseid.all().values()
             
             for i in range(0,len(allenrol)):

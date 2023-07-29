@@ -5,6 +5,8 @@ from django.contrib.auth.models import User
 from django.utils.timezone import now
 # Create your models here.
 class Projects1(models.Model):
+    class Meta:
+        verbose_name,verbose_name_plural = "Site Projects","Site Projects"
     RATING = (
         (1,1),
         (2,2),
@@ -47,6 +49,8 @@ class Pelcon(models.Model):
 
 
 class Content(models.Model):
+    class Meta:
+        verbose_name,verbose_name_plural = "Projects Content","Projects Content"
     Contentid = models.AutoField(primary_key=True)
     projasso = models.ForeignKey(Projects1,blank=False,on_delete=models.CASCADE,null=True)
     filename = models.CharField(verbose_name="File Name",max_length=50)
@@ -55,4 +59,6 @@ class Content(models.Model):
 
     def __str__(self):
         return self.filename
+
+
 

@@ -3,7 +3,7 @@ from django.http.response import Http404, HttpResponse
 from django.shortcuts import render
 from django.views import generic
 # from django.urls import reverse_lazy
-from .models import Products,Content
+from .models import Products,Content,ProductsEnrolledUser
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib import messages
@@ -65,12 +65,23 @@ def ProductIndex(request):
             
         if len(allproducts):
             return render(request,'Products/index.html',{'Projects':allproducts})
-        return render(request,'generalPages\commingSoonPage.html')
+        return render(request,'generalPages/commingSoonPage.html')
     # except:
     #     return HttpResponse("There is some error at server please try again later !")
 
+def get_project_by_user(product,user):
+    try:
+        return ProductsEnrolledUser.objects.get(profileId=user,productid=product)
+    except :
+        return None
+
 def Productview(request,pid):
     try:
+        productObj = Products.objects.get(productid = pid)
+        product_by_user = get_project_by_user(productObj,request.user)
+        if product_by_user is None:
+            return render(request,'generalPages/NotEnrolled.html')
+
         ppjj = Products.objects.filter(productid = pid).values()
         fileup = Content.objects.filter(projasso = pid).values()
         ppjj = ppjj[0]

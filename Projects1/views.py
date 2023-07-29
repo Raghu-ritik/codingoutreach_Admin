@@ -8,6 +8,7 @@ from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
+from Home.models import ProjectsEnrolled
 
 from math import ceil
 import os
@@ -71,19 +72,30 @@ def Home1(request):
         # print("proj :: ",proj)
         # print("allprojects :: ",allprojects)
         
-        return render(request,'Projects1/index.html',{'project':allprojects})
+        if len(allprojects):
+            return render(request,'Projects1/index.html',{'project':allprojects})
+        return render(request,'generalPages/commingSoonPage.html')
     except:
         return HttpResponse("There is some error at server please try again later !")
 
+
+def get_project_by_user(project,user):
+    try:
+        return ProjectsEnrolled.objects.get(profileId=user,courseid=project)
+    except :
+        return None
+
+
 def projview(request,pid):
     try:
-        ppjj = Projects1.objects.filter(projectid = pid).values()
+        project1 = Projects1.objects.get(projectid = pid)
+        project_by_user = get_project_by_user(project1,request.user)
+        if project_by_user is None:
+            return render(request,'generalPages/NotEnrolled.html')
+        ppjj = Projects1.objects.get(projectid = pid)
         fileup = Content.objects.filter(projasso = pid).values()
-        ppjj = ppjj[0]
-
-        # print(fileup)
         return render(request,'Projects1/projview.html',{'project':ppjj,'filesup':fileup})
-    except:
+    except :
         return HttpResponse("There is some error at server please try again later !")
 
 # class pelconView(generic.ListView):

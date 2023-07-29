@@ -3,7 +3,8 @@ from pyexpat import model
 from django.contrib import admin
 
 # Register your models here.
-from .models import Content, Projects1,Pelcon
+from .models import Content, Projects1
+ 
 
 class ContentInline(admin.TabularInline):
     model = Content

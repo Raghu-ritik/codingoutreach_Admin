@@ -3,7 +3,8 @@ from django.db import models
 # Create your models here.
 
 class notes1(models.Model):
-    
+    class Meta:
+        verbose_name,verbose_name_plural = "Notes","Notes"
     courfor = (
         ('BTech','BTech'),
         ('B.E','B.E'),
@@ -55,7 +56,8 @@ class notes1(models.Model):
         return str(self.notesid)+" "+str(self.notestitle)
 
 class notesfile(models.Model):
-
+    class Meta:
+        verbose_name,verbose_name_plural = "Notes File","Notes File"
     Nfileif = models.AutoField(primary_key=True)
     filelink = models.OneToOneField(notes1,verbose_name="File Link",on_delete=models.CASCADE,null=True,blank=True)
     file_title = models.CharField(verbose_name="File Title",max_length=100,blank=True)

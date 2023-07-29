@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import Products,Content
+from .models import Products,Content,ProductsEnrolledUser
 # admin.site.register(Products)
 
 class ContentInline(admin.TabularInline):
@@ -27,3 +27,4 @@ class CustomProjects(admin.ModelAdmin):
 # admin.site.register(Projects1)
 # admin.site.register(Pelcon)
 # admin.site.register(Content)
+admin.site.register(ProductsEnrolledUser)
