@@ -2,6 +2,7 @@ from django.contrib import admin
 
 # Register your models here.
 from .models import(notes1,notesfile)
+from .models import CourseFor, categoryOfNotes, subjectOfNotes, branchForNotes, semeserForNotes
 # admin.site.register(notesfile)
 
 
@@ -27,3 +28,8 @@ class CustomProjects(admin.ModelAdmin):
     ]
 
     
+admin.site.register(CourseFor)
+admin.site.register(categoryOfNotes)
+admin.site.register(subjectOfNotes)
+admin.site.register(branchForNotes)
+admin.site.register(semeserForNotes)

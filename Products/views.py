@@ -49,16 +49,15 @@ def Input(request):
 def ProductIndex(request):
     # try:
         allproducts = []
-        products = Products.objects.values('category','productid')
+        products = Products.objects.values('categoryF','productid')
         proj = []
-        cate = {pj['category'] for pj in products}
+        cate = {pj['categoryF'] for pj in products}
         cate = list(cate)
         dio = {key : 0 for key in cate}
         for produ in products:
-            dio[produ['category']] += 1
-        print(dio)
+            dio[produ['categoryF']] += 1
         for pro in dio.keys():
-            ppjj = Products.objects.filter(category = pro)
+            ppjj = Products.objects.filter(categoryF = pro)
             n = dio[pro]
             nslides = n//3 + ceil((n/3)-(n//3))
             allproducts.append([ppjj,range(1,n), nslides])

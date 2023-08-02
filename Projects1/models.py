@@ -2,6 +2,7 @@ from os import O_WRONLY, name
 from typing import DefaultDict
 from django.db import models
 from django.contrib.auth.models import User
+from Products.models import CategoryField
 from django.utils.timezone import now
 # Create your models here.
 class Projects1(models.Model):
@@ -14,18 +15,18 @@ class Projects1(models.Model):
         (4,4),
         (5,5),
     )
-    categ = (
-        ('Web development','Web development'),
-        ('Machine Learning','Machine Learning'),
-        ('Data Science','Data Science'),
-        ('PHP','PHP'),
-        ('C/C++','C/C++'),
-        ('Others','Others')
-    )    
+    # categ = (
+    #     ('Web development','Web development'),
+    #     ('Machine Learning','Machine Learning'),
+    #     ('Data Science','Data Science'),
+    #     ('PHP','PHP'),
+    #     ('C/C++','C/C++'),
+    #     ('Others','Others')
+    # )    
 
     projectid = models.AutoField(primary_key=True)
     projectname = models.CharField(verbose_name="Project Name",max_length=100,blank=False)
-    category = models.CharField(verbose_name="Category",max_length=35,null=True,choices=categ,blank=True)
+    categoryF = models.ForeignKey(CategoryField,verbose_name="Category",null=True,blank=True,on_delete=models.SET_NULL) 
     desc = models.CharField(verbose_name="Description",max_length=500,blank=True)
     creator = models.CharField(verbose_name="Creator",max_length=50,blank=True)
     datecreated = models.DateTimeField(verbose_name="Date Created",default=now)

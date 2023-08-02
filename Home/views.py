@@ -5,6 +5,8 @@ from django.shortcuts import render,redirect
 from .forms import Contactusfrom
 from django.contrib.auth.models import User
 from Projects1.models import Projects1
+from Products.models import Products
+
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth import login as auth_login
 from django.contrib.auth.models import Group
@@ -25,7 +27,45 @@ from django.utils.http import urlsafe_base64_decode,urlsafe_base64_encode
 from django.template.loader import render_to_string
 
 def Home(request):
-    return render(request,'Home/index.html',{})
+
+
+    lastProjectID,lastProductID = 0,0
+    allproducts = []
+    allprojects = []
+    products = Products.objects.values('productid')
+    n = len(products)
+    subList = []
+    count = 0
+    for index, productId in enumerate(products):
+        ppjj = Products.objects.filter(productid = productId['productid']).values()
+        subList.append(ppjj[0])
+        if (index+1)%3 ==0 :
+            allproducts.append({count:subList})
+            subList = []
+            count += 1
+        elif index == 4 or index == len(products)-1:
+            lastProductID = ppjj[0]['productid']
+            allproducts.append({count:subList})
+            subList = []
+            count += 1
+            break
+    projects = Projects1.objects.values('projectid')
+    subList = []
+    count = 0
+    for index, projectId in enumerate(projects):
+        ppjj = Projects1.objects.filter(projectid = projectId['projectid']).values()
+        subList.append(ppjj[0])
+        if (index+1)%3 ==0 :# or index == len(projects)-1:
+            allprojects.append({count:subList})
+            subList = []
+            count += 1
+        elif index==4 or index == len(projects)-1:
+            lastProjectID = ppjj[0]['projectid']
+            allprojects.append({count:subList})
+            subList = []
+            count += 1
+            break
+    return render(request,'Home/index.html',{"allproducts":allproducts,"allprojects":allprojects,"lastProjectID":lastProjectID,'lastProductID':lastProductID})
 
 def valiemail(emailva):
     regex = r'\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Z|a-z]{2,}\b'

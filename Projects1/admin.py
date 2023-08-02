@@ -12,11 +12,11 @@ class ContentInline(admin.TabularInline):
 @admin.register(Projects1)
 class CustomProjects(admin.ModelAdmin):
     model = Projects1
-    list_display = ('projectname','category','rating')
-    list_filter = ('category','Availability','rating')
+    list_display = ('projectname','categoryF','rating')
+    list_filter = ('categoryF','Availability','rating')
 
     fieldsets = (
-        (None, {'fields': ('projectname','category','desc','creator','datecreated','purpose','Availability','rating')}),
+        (None, {'fields': ('projectname','categoryF','desc','creator','datecreated','purpose','Availability','rating')}),
         ('Cover image and video', {'fields': ('Image','introvideo')}),
     )
 

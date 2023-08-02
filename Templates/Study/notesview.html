@@ -2,11 +2,10 @@
 {% block title %}  NB projects view - For Everyone {% endblock %} 
 {% block cssd %} 
 {% load static %}
-{% static 'Projects1/projview.css' %} 
+<link rel="stylesheet" href="{% static 'Projects1/projview.css' %}"> 
 {% endblock %}
 {% block jsd %} 
-{% load static %}
-{% static 'Projects1/projview.js' %} 
+<script src="{% static 'Projects1/projview.js' %} "></script>
 {% endblock %}
 {% block body %}
 <div class="container">
@@ -17,11 +16,9 @@
         <p class="about-p">{{notes.notedesc}} </p>
         <button class="btn btn-crea"> - {{notes.branch}}</button>
     </div>
-    <iframe width="560" height="315" class="img img-n" src="{{ notes.youtubevideolink }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    <iframe width="630" height="315" class="img img-n" src="{{ notes.youtubevideolink }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     <img src="/media/{{ project.Image }}" class="img img-n" alt="{{project.projectname}}">
 </section>
-
-
 {% if filesup %}
   <table class="table table-hover">
    

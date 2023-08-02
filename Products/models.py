@@ -1,3 +1,6 @@
+from statistics import mode
+from tkinter import CASCADE
+from unicodedata import category
 from django.db import models
 
 # Create your models here.
@@ -6,6 +9,14 @@ from typing import DefaultDict
 from django.db import models
 from django.contrib.auth.models import User
 from django.utils.timezone import now
+
+class CategoryField(models.Model):
+    class Meta:
+        verbose_name,verbose_name_plural = "Products Category Field","Products Category Field"
+    categoryId = models.AutoField(primary_key=True)
+    categoryName = models.CharField(verbose_name="Category Name",max_length=35)
+    def __str__(self) -> str:
+        return str(self.categoryName)
 
 # Create your models here.
 class Products(models.Model):
@@ -18,18 +29,11 @@ class Products(models.Model):
         (4,4),
         (5,5),
     )
-    categ = (
-        ('Web development','Web development'),
-        ('Machine Learning','Machine Learning'),
-        ('Data Science','Data Science'),
-        ('PHP','PHP'),
-        ('C/C++','C/C++'),
-        ('Others','Others')
-    )    
+   
 
     productid = models.AutoField(primary_key=True)
     productname = models.CharField(verbose_name="Product Name",max_length=100)
-    category = models.CharField(verbose_name="Category",max_length=35,null=True,choices=categ,default="Machine Learning")
+    categoryF = models.ForeignKey(CategoryField,verbose_name="Category",on_delete=models.SET_NULL, null=True, blank=True) 
     desc = models.CharField(verbose_name="Description",max_length=500,blank=True)
     creator = models.CharField(verbose_name="Creator Name",max_length=50,blank=True)
     datecreated = models.DateTimeField(verbose_name="Date Created",default=now)

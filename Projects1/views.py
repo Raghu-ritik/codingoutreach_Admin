@@ -49,18 +49,18 @@ def Input(request):
         return render(request,'Projects1/input.html')
 
 def Home1(request):
-    try:
+    # try:
         allprojects = []
-        project = Projects1.objects.values('category','projectid')
+        project = Projects1.objects.values('categoryF','projectid')
         proj = []
-        cate = {pj['category'] for pj in project}
+        cate = {pj['categoryF'] for pj in project}
         cate = list(cate)
         dio = {key : 0 for key in cate}
         for produ in project:
-            dio[produ['category']] += 1
+            dio[produ['categoryF']] += 1
         print(dio)
         for pro in dio.keys():
-            ppjj = Projects1.objects.filter(category = pro)
+            ppjj = Projects1.objects.filter(categoryF = pro)
             n = dio[pro]
             nslides = n//3 + ceil((n/3)-(n//3))
             allprojects.append([ppjj,range(1,n), nslides])
@@ -75,8 +75,8 @@ def Home1(request):
         if len(allprojects):
             return render(request,'Projects1/index.html',{'project':allprojects})
         return render(request,'generalPages/commingSoonPage.html')
-    except:
-        return HttpResponse("There is some error at server please try again later !")
+    # except:
+    #     return HttpResponse("There is some error at server please try again later !")
 
 
 def get_project_by_user(project,user):

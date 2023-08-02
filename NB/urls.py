@@ -28,6 +28,7 @@ urlpatterns = [
     path('products/',include('Products.urls')),
     path('project/',include('Projects1.urls')),
     path('LearnWithUS/',include('LearnWithUS.urls')),
+    path('Notes/',include('Study.urls')),
     
 ]+static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

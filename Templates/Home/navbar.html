@@ -10,232 +10,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com"  crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Comforter&family=Yellowtail&display=swap" rel="stylesheet">
-   
     <title>{% block title %} {% endblock %}</title>
-
     {% load static %}
-    <link rel="stylesheet" href="{% static 'css\bootstrap.min.css' %}">
-    {% load static %}
+    <link   rel="stylesheet" href="{% static 'css\bootstrap.min.css' %}">
+    <link   rel="stylesheet" href="{% static 'navbar.css' %}" />
     <script src="{% static 'js\bootstrap.min.js' %}" ></script>
-    {% load static %}
-    <link rel="stylesheet" href="{% static 'navbar.css' %}" /> 
-    {% load static %}
-    <link rel="stylesheet" href="{% block cssd %} {% endblock %}" /> 
-    <style>
-      img.logoimg1{
-        position:absolute;
-        width:5rem;
-        top:20px;
-        left:20px;
-      }
+    {% block cssd %} 
  
-      div.navbar-collapse{
-        margin-left:100px;
-      }
-      nav.navbar{
-        background-color: #1B65A7;
-      }
-      li.nav-item a{
-        color:#fff;
-      }
-      li.nav-item a:hover{
-        color:#fff;
-        background-color: #065da8;
-        border-radius:20px;
-      }
-      .btn-outl{
-        color:#fff;
-        border-color:#fff;
-      }
-      .btn-outl :hover{
-        color:#fff;
-        background-color: #065da8;
-        border-radius:40px;
-      }
-      .d-block{
-        height:78vh;
-      }
-      .hiddenclassNormal{
-        display:none;
-      }
-      .lead{
-        color: #fff;
-        background-color: rgba(29, 101, 167,0.7);
-        padding: 10px;
-        border-radius:20px;
-        text-align:center;
-      }
-      .sec{
-        padding: 70px 0 70px 0;
-      }
-      .sec h2.section-head{
-          color:#040615;
-          text-align:center;
-          margin-bottom: 40px;
-      }
-      .sec h2.section-head:after{
-          background-color: #065da8;
-          display: block;
-          width: 100px;
-          height: 3px;
-          margin: 20px auto;
-      }    
-      .service-box{
-        text-align: center;
-      }
-      .service-box i.fa{
-        color: #1B65A7;
-        font-size: 70px;
-        margin-bottom: 1rem;
-      }
-      #Footer-sidebar{
-        color:#ffff;
-        background-color: #065da8;
-        padding: 20px 0;
-    }
-    .footer-widget h4:after{
-        content: "";
-        background: #fff;
-        display: block;
-        width: 60px;
-        height: 2px;
-        margin: 5px 0;
-    }
-    .footer-widget a{
-        color: #fff;
-    }
-    .latest-News{
-        list-style: none;
-        padding: 0;
-        margin: 0;
-    }
-    .latest-News li{
-        margin-bottom: 3px;
-    }
-    .latest-News li:before{
-        content: "\f101";
-        font-family: FontAwsome;
-        padding-right:5px ;
-    }
-    .latest-News li a{
-      text-decoration:none;
-    }
-    
-      #footer{
-        color: #fff;
-        background: #1B65A7;
-        pad: 10px 0;
-    }
-    #Social-icon{
-        list-style: none;
-        color: #fff;
-        margin: 0;
-        padding: 0;
-    }
-    #Social-icon li{
-        display: inline-block;
-        padding-left: 5px;
-    }
-    #Social-icon li a{
-        color: #fff;
-        font-size: 1.4rem;
-    
-    }
-    .dropdown-menu{
-      background: #1B65A7;
-    }
-    @media (max-width:960px) {
-      .d-block{
-        height:38vh;
-      }
-      .hiddenclassNormal{
-        display:flex;
-        margin:20px 20px;
-      }
-      .news-post{
-        margin-bottom: 30px;
-      }
-      .news-post img{
-          height: 400px;
-          width: 90%;
-          margin-bottom: 10px;
-      }
-      .footer-widget{
-        margin-bottom: 20px;
-    }
-    #footer{
-        text-align: center;
-    }
-    #social-icons{
-        margin-top: 10px;
-    }
-    
-  .navbar-toggler{
-    margin-left:auto;
-    color:#fff;
-  }
-  button:focus:not(:focus-visible) {
-    outline: 0;
-}
-.navbar-toggler:focus {
-  text-decoration: none;
-  outline: 0;
-  box-shadow: 0 0 0 0;
-  }
-  .logSign{
-    margin:0.4rem 0rem 0rem 0rem;
-  }
-  .dropdown-menu{
-    background: #1B65A7;
-  }
-    }
-
-      @media (max-width:768px) {
-        .d-block{
-          height:38vh;
-        }
-        .hiddenclassNormal{
-          display:flex;
-          margin:20px 20px;
-        }
-        .news-post{
-          margin-bottom: 30px;
-        }
-        .news-post img{
-            height: 400px;
-            width: 90%;
-            margin-bottom: 10px;
-        }
-        .footer-widget{
-          margin-bottom: 20px;
-      }
-      #footer{
-          text-align: center;
-      }
-      #social-icons{
-          margin-top: 10px;
-      }
-      
-    .navbar-toggler{
-      margin-left:auto;
-      color:#fff;
-    }
-    button:focus:not(:focus-visible) {
-      outline: 0;
-  }
-  .navbar-toggler:focus {
-    text-decoration: none;
-    outline: 0;
-    box-shadow: 0 0 0 0;
-    }
-    .logSign{
-      margin:0.4rem 0rem 0rem 0rem;
-      color:#fff
-    }
-    .dropdown-menu{
-      background: #1B65A7;
-    }
-      }
+    {% endblock %} 
+    <style>
 
       
     </style>
@@ -281,6 +64,7 @@
                   <li><a class="dropdown-item" href="/project">Projects</a></li>
                   <li><a class="dropdown-item" href="/products">DL solutions</a></li>
                   <li><a class="dropdown-item" href="/LearnWithUS">Learn With us</a></li>
+                  <li><a class="dropdown-item" href="/Notes"> Notes </a></li>
                 </ul>
               </li>
             </ul>
@@ -385,7 +169,8 @@
 
 
 
+{% block jsd %} 
 
-        <script src="{% block jsd %} {% endblock %}" ></script> 
+{% endblock %}
   </body>
 </html>
