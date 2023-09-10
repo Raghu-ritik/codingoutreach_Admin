@@ -1,9 +1,70 @@
-.navbar {
-    position: relative;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    padding-top: 1.15rem;
-    padding-bottom: 1.5rem;
+/* Crousel for projects */
+.img-thumbnail{
+  max-height: 210px;
+  min-height: 100%;
+}
+.latest-News {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.latest-News li {
+  margin-bottom: 3px;
+}
+.latest-News li:before {
+  content: "\f101";
+  font-family: FontAwsome;
+  padding-right: 5px;
+}
+.latest-News li a {
+  text-decoration: none;
+}
+.sec {
+  padding: 70px 0 70px 0;
+}
+.sec h2.section-head {
+  color: #040615;
+  text-align: center;
+  margin-bottom: 40px;
+}
+.sec h2.section-head:after {
+  background-color: #065da8;
+  display: block;
+  width: 100px;
+  height: 3px;
+  margin: 20px auto;
+}
+.service-box {
+  text-align: center;
+}
+.service-box i.fa {
+  color: #1b65a7;
+  font-size: 70px;
+  margin-bottom: 1rem;
+}
+
+.project-product-row{
+  max-height: 420px;
+}
+/* project Images  420 * 498 */
+
+/* The overlay effect - lays on top of the container and over the image */
+.overlay {
+  position: absolute;
+  bottom: 0;
+  background: rgb(0, 0, 0);
+  background: rgba(0, 0, 0, 0.5); /* Black see-through */
+  color: #f1f1f1;
+  width: 34%;
+  transition: 0.5s ease;
+  opacity: 0;
+  color: white;
+  font-size: 20px;
+  padding: 20px;
+  text-align: center;
+}
+
+/* When you mouse over the container, fade in the overlay title */
+.container-robot:hover .overlay {
+  opacity: 1;
 }

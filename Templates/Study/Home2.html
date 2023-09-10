@@ -3,10 +3,10 @@
 {% block title %}  NB projects - For Everyone {% endblock %} 
 {% block cssd %} 
 {% load static %}
-{% static 'Study/Home2.css' %} {% endblock %}
+  <link rel="stylesheet" href="{% static 'Study/Home2.css' %}">
+{% endblock %}
 {% block jsd %} 
-{% load static %}
-{% static 'Projects1/index.js' %} 
+  <script src="{% static 'Projects1/index.js' %}"></script>
 {% endblock %}
 {% block body %}
 
@@ -25,7 +25,7 @@
         <div  class="card-stats">
             <button type="button" id="note{{ note.notesid }}" class="btn btn-outline-primary btn-nxtpg">Preview </button>
           <a href="notesview/{{note.notesid}}/"> 
-            <button type="button" class="btn btn-outline-primary btn-nxtpg" style="margin-left: 2rem;">Buy Now </button>
+            <button type="button" class="btn btn-outline-primary btn-nxtpg" style="margin-left: 2rem;">Explore Notes</button>
           </a>
           <!-- <p class="btn-text-en">
             
@@ -41,26 +41,21 @@
           <h1>{{ note.notestitle }}</h1>
           <p >{{ note.notedesc }}</p><br>
           <a href="notesview/{{note.notesid}}/"> 
-            <button type="button" class="btn btn-outline-primary btn-nxtpg" style="margin-left: 2rem;">Buy Now </button>
+            <button type="button" class="btn btn-outline-primary btn-nxtpg" style="margin-left: 2rem;">Explore Notes</button>
           </a>
         </div>
       </div>
       <script>
-        // const btn = document.querySelector('.prebtn');
         const btn{{ note.notesid }} = document.getElementById('note{{ note.notesid }}');
-        // const videoContainer = document.querySelector('.video-container');
         const videoContainer{{ note.notesid }} = document.getElementById('vid{{ note.notesid }}');
-        // const close = document.querySelector('.close');
         const close{{ note.notesid }} = document.getElementById('close{{ note.notesid }}');
-    
         btn{{ note.notesid }}.addEventListener('click',()=>{
             videoContainer{{ note.notesid }}.classList.add('show');
         })
-    
         close{{ note.notesid }}.addEventListener('click',()=>{
             videoContainer{{ note.notesid }}.classList.remove('show');
         })
-    </script>
+      </script>
       {% endfor %}  
   </div>
 {% endfor %}

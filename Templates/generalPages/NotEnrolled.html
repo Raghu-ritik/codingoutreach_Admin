@@ -1,0 +1,21 @@
+{% extends 'Home/navbar.html' %}
+{% block title %} NB-Not Enrolled {% endblock %} 
+{% block cssd %} 
+{% load static %}
+{% static 'generalPages/notEnrolledPage.css' %} 
+{% endblock %}
+{% block jsd %} 
+{% load static %}
+{% static 'Projects1/projview.js' %} 
+{% endblock %}
+{% block body %}
+
+<div class="bgimg" style="background-image: url('/static/images/generalPages/not Subscribed.jpg');">
+    <div class="container-not-subscribed">
+        <h1 class="title">Not Subscribed to Project</h1>
+        <p class="message">You are not subscribed to this project. Please subscribe to access its content.</p>
+        <button class="subscribe-button">Subscribe Now</button>
+    </div>
+</div>
+
+{% endblock %}

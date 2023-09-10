@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import Products,Content
+from .models import Products, Content, ProductsEnrolledUser, CategoryField
 # admin.site.register(Products)
 
 class ContentInline(admin.TabularInline):
@@ -10,11 +10,11 @@ class ContentInline(admin.TabularInline):
 @admin.register(Products)
 class CustomProjects(admin.ModelAdmin):
     model = Products
-    list_display = ('productname','category','rating')
-    list_filter = ('category','Availability','rating')
+    list_display = ('productname','rating')
+    list_filter = ('Availability','rating')
 
     fieldsets = (
-        (None, {'fields': ('productname','category','desc','creator','datecreated','purpose','Availability','rating')}),
+        (None, {'fields': ('productname','categoryF','desc','creator','datecreated','purpose','Availability','rating')}),
         ('Cover image and video', {'fields': ('Image','introvideo')}),
     )
 
@@ -27,3 +27,5 @@ class CustomProjects(admin.ModelAdmin):
 # admin.site.register(Projects1)
 # admin.site.register(Pelcon)
 # admin.site.register(Content)
+admin.site.register(ProductsEnrolledUser)
+admin.site.register(CategoryField)

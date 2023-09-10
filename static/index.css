@@ -1,131 +1,70 @@
-.navbar {
-    position: relative;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: space-between;
-    padding-top: 1.15rem;
-    padding-bottom: 1.5rem;
+/* Crousel for projects */
+.img-thumbnail{
+  max-height: 210px;
+  min-height: 100%;
 }
-a,a:hover{
-    text-decoration: none;
+.latest-News {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
-img.logoimg1{
-    position:absolute;
-    top:20px;
-    left:20px;
-  }
-  div.navbar-collapse{
-    margin-left:100px;
-  }
-  nav.navbar{
-    background-color: #1B65A7;
-  }
-  li.nav-item a{
-    color:#fff;
-  }
-  li.nav-item a:hover{
-    color:#fff;
-    background-color: #065da8;
-    border-radius:20px;
-  }
-  .btn-outl{
-    color:#fff;
-    border-color:#fff;
-  }
-  .btn-outl :hover{
-    color:#fff;
-    background-color: #065da8;
-    border-radius:40px;
-  }
-  .d-block{
-    height:78vh;
-  }
-  .hiddenclassNormal{
-    display:none;
-  }
-  .lead{
-    color: #fff;
-    background-color: rgba(29, 101, 167,0.7);
-    padding: 10px;
-    border-radius:20px;
-    text-align:center;
-  }
-  .sec{
-    padding: 30px 0 50px 0;
-  }
-  .sec h2.section-head{
-      color:#040615;
-      text-align:center;
-      margin-bottom: 40px;
-  }
-  .sec h2.section-head:after{
-      background-color: #065da8;
-      display: block;
-      width: 100px;
-      height: 3px;
-      margin: 20px auto;
-  }    
-  .service-box{
-    text-align: center;
-  }
-  .service-box i.fa{
-    color: #1B65A7;
-    font-size: 70px;
-    margin-bottom: 1rem;
-  }
-  .news-post img{
-    height: 5rem;
-    width: 5rem;
-    margin-bottom: 10px;
+.latest-News li {
+  margin-bottom: 3px;
 }
-.news-post h3{
-    font-size: 1.35rem;
+.latest-News li:before {
+  content: "\f101";
+  font-family: FontAwsome;
+  padding-right: 5px;
+}
+.latest-News li a {
+  text-decoration: none;
+}
+.sec {
+  padding: 70px 0 70px 0;
+}
+.sec h2.section-head {
+  color: #040615;
+  text-align: center;
+  margin-bottom: 40px;
+}
+.sec h2.section-head:after {
+  background-color: #065da8;
+  display: block;
+  width: 100px;
+  height: 3px;
+  margin: 20px auto;
+}
+.service-box {
+  text-align: center;
+}
+.service-box i.fa {
+  color: #1b65a7;
+  font-size: 70px;
+  margin-bottom: 1rem;
 }
 
-.news-post h3 a{
-    color: #1B65A7;
+.project-product-row{
+  max-height: 420px;
 }
-/* .post-date:before{
-    content: "\f073";
-    color: #065da8;
-    font-family: FontAwsome;
-    padding-right: 5px;
-} */
+/* project Images  420 * 498 */
 
-.post-date{
-
-    font-size: 13px;
-    margin-bottom: 2px;
-}
-a.readmore{
-    font-size: 14px;
-
-}
-a.readmore:after{
-    content: "\f101";
-    font-family: FontAwsome;
-    padding-left: 5px;
-    color: #1B65A7;
+/* The overlay effect - lays on top of the container and over the image */
+.overlay {
+  position: absolute;
+  bottom: 0;
+  background: rgb(0, 0, 0);
+  background: rgba(0, 0, 0, 0.5); /* Black see-through */
+  color: #f1f1f1;
+  width: 34%;
+  transition: 0.5s ease;
+  opacity: 0;
+  color: white;
+  font-size: 20px;
+  padding: 20px;
+  text-align: center;
 }
 
-  @media (max-width:768px) {
-    .d-block{
-      height:38vh;
-    }
-    .hiddenclassNormal{
-      display:flex;
-      margin:20px 20px;
-    }
-    .news-post{
-      margin-bottom: 30px;
-    }
-    .news-post img{
-        height: 400px;
-        width: 90%;
-        margin-bottom: 10px;
-    }
-    
-  }
- 
-  /* ************************************************************** */
+/* When you mouse over the container, fade in the overlay title */
+.container-robot:hover .overlay {
+  opacity: 1;
+}

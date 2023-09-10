@@ -4,6 +4,8 @@ from django.db import models
 # Create your models here.
 
 class LearnMODEL(models.Model):
+    class Meta:
+        verbose_name,verbose_name_plural = "Learning Module","Learning Module"
     LearnModelid = models.AutoField(primary_key=True)
     LearnTitle = models.CharField(max_length=60,verbose_name="Title",blank=False,unique=True)
     SubLearnHeading = models.CharField(verbose_name="Sub-Heading ",max_length=50,blank=True)
@@ -12,7 +14,8 @@ class LearnMODEL(models.Model):
     notedesc = models.TextField(verbose_name="Notes Description",max_length=800,blank=True)
 
 class notesfile(models.Model):
-
+    class Meta:
+        verbose_name,verbose_name_plural = "Learning Module Notes","Learning Module Notes"
     Nfileif = models.AutoField(primary_key=True)
     filelink = models.OneToOneField(LearnMODEL,verbose_name="File Link",on_delete=models.CASCADE,null=True,blank=True)
     file_title = models.CharField(max_length=100,verbose_name="File Title",blank=True)

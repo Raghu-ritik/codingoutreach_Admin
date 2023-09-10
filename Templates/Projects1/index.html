@@ -3,10 +3,11 @@
 {% block title %}  NB projects - For Everyone {% endblock %} 
 {% block cssd %} 
 {% load static %}
-{% static 'Projects1/index.css' %} {% endblock %}
+<link rel="stylesheet" href="{% static 'Projects1/index.css' %}">
+ {% endblock %}
 {% block jsd %} 
 {% load static %}
-{% static 'Projects1/index.js' %} 
+<script src="{% static 'Projects1/index.js' %}"></script> 
 {% endblock %}
 {% block body %}
 
@@ -25,9 +26,9 @@
         </div>
         <div  class="card-stats">
             <button type="button" id="proj{{ proj.projectid }}" class="btn btn-outline-primary btn-nxtpg">Preview </button>
-          <!-- <a href="view/{{proj.projectid}}/">  -->
+          <a href="view/{{proj.projectid}}/"> 
             <button type="button" class="btn btn-outline-primary btn-nxtpg" style="margin-left: 2rem;">Enroll Now </button>
-          <!-- </a> -->
+          </a>
           <!-- <p class="btn-text-en">
             
           </p> -->

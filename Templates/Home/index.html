@@ -2,8 +2,15 @@
 
 {% block cssd %} 
 {% load static %}
-{% static 'index.css' %} {% endblock %}
+<link rel="stylesheet" href="{% static 'index.css' %}" />
+{% endblock %}
 {% block title %}  CodingOutreach - For Everyone {% endblock %} 
+
+{% block jsd %} 
+    <script src="{% static 'js/Home/index.js' %}"></script>
+{% endblock %}
+
+index.js
 
 {% block body %}
 
@@ -24,6 +31,7 @@
                 <a href="/project"><button class="btn btn-danger">Projects</button></a>
                 <a href="/products"><button class="btn btn-primary">DL solutions</button></a>
                 <a href="/LearnWithUS"><button class="btn btn-success">Learn With Us</button></a>
+                <a href="/Notes"><button class="btn btn-warning">Notes</button></a>
             </div>
         </div>
         <div class="carousel-item">
@@ -35,6 +43,7 @@
                 <a href="/project"><button class="btn btn-danger">Projects</button></a>
                 <a href="/products"><button class="btn btn-primary">DL solutions</button></a>
                 <a href="/LearnWithUS"><button class="btn btn-success">Learn with Us</button></a>
+                <a href="/Notes"><button class="btn btn-warning">Notes</button></a>
             </div>
         </div>
         <div class="carousel-item">
@@ -46,6 +55,7 @@
                 <a href="/project"><button class="btn btn-danger">Projects</button></a>
                 <a href="/products"><button class="btn btn-primary">DL solutions</button></a>
                 <a href="/LearnWithUS"><button class="btn btn-success">Learn With Us</button></a>
+                <a href="/Notes"><button class="btn btn-warning">Notes</button></a>
         </div>
         </div>
         </div>
@@ -112,6 +122,142 @@
     </div>
 </section>
 <!-- section1 ends  -->
+
+<!-- Project carousel -->
+<div class="container-fluid sec">
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="section-head">Products</h2>
+        </div>
+    </div>
+    <div id="carouselProductsCaptions" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselProductsCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselProductsCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        </div>
+        <div class="carousel-inner">
+            {% for products in allproducts %}
+                {% for key, value in products.items %}
+                    {% if key == 0 %}
+                        <div class="carousel-item active " >
+                        <div class="row project-product-row">
+                    {% else %}
+                        <div class="carousel-item">
+                        <div class="row project-product-row">
+                    {% endif %}
+                            {% for product in value %}
+                            <div class="col-md-4 p-2 container-robot" >
+                                <img src="/media/{{ product.Image }}" class="d-block w-100" alt="Image 5">                
+                                <div class="overlay">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                {{product.productname}}
+                                            </div>
+                                            <div class="col-md-12">
+                                                {{product.desc|slice:"0:100"}}
+                                            </div>
+                                            <div class="col-md-12">
+                                                <button class="success">Access Now</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                
+                                </div>
+                            </div>
+                            {% if lastProductID == product.productid %}
+                            <div class="col-md-4 p-2 container-robot" style="padding: 11% !important;" >
+                                <a href="/products"><button class="btn btn-outline-primary btn-lg">Show More</button></a>
+                            </div>
+                            {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% endfor %}
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselProductsCaptions" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselProductsCaptions" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</div>
+<!-- Project carousel ends  -->
+
+
+
+
+<!-- Projects carousel -->
+<div class="container-fluid sec">
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="section-head">Projects</h2>
+        </div>
+    </div>
+    <div id="carouselProjectCaptions" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselProjectCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselProjectCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        </div>
+        <div class="carousel-inner">
+            {% for projects in allprojects %}
+                {% for key, value in projects.items %}
+                    {% if key == 0 %}
+                        <div class="carousel-item active" >
+                        <div class="row project-product-row">
+                    {% else %}
+                        <div class="carousel-item">
+                        <div class="row project-product-row">
+                            {% endif %}
+                            {% for project in value %}
+                            <div class="col-md-4 p-2 container-robot" >
+                                <img src="/media/{{ project.Image }}" class="d-block w-100" alt="Image 5">                
+                                <div class="overlay">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                {{project.projectname}}
+                                            </div>
+                                            <div class="col-md-12">
+                                                {{project.desc|slice:"0:100"}}
+                                            </div>
+                                            <div class="col-md-12">
+                                                <button class="success">Access Now</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                
+                                </div>
+                            </div>
+                            {% if lastProjectID == project.projectid %}
+                            <div class="col-md-4 p-2 container-robot" style="padding: 11% !important;">
+                                <a href="/project"><button class="btn btn-outline-primary btn-lg">Show More</button></a>
+                            </div>
+                            {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% endfor %}
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselProjectCaptions" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselProjectCaptions" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</div>
+<!-- Project carousel ends  -->
+
+
+
 <!-- News  -->
 <div id="news" class="container sec">
     <div class="row">
@@ -120,8 +266,8 @@
         </div>
         <div class="col-lg-3 col-md-6">
             <div class="news-post">
-                <img src="static\images\news1.jpg" alt="" srcset="">
-                <h3> <a href="http://"> News Heading Here</a></h3>
+                <img src="static\images\news1.jpg" class="img-thumbnail">
+                <h3> <a href="http://"> News Heading 1</a></h3>
                 <div class="post-date">Jul 13, 2022</div>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis nulla nesciunt excepturi.</p>
                 <a href="" class="readmore">Read More</a>
@@ -129,8 +275,8 @@
         </div>
         <div class="col-lg-3 col-md-6">
             <div class="news-post">
-                <img src="static\images\news2.jpg" alt="" srcset="">
-                <h3> <a href="http://"> News Heading Here</a></h3>
+                <img src="static\images\news2.jpg" class="img-thumbnail">
+                <h3> <a href="http://"> News Heading 1</a></h3>
                 <div class="post-date">Jul 13, 2022</div>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis nulla nesciunt excepturi.</p>
                 <a href="" class="readmore">Read More</a>
@@ -138,8 +284,8 @@
         </div>
         <div class="col-lg-3 col-md-6">
             <div class="news-post">
-                <img src="static\images\news3.jpg" alt="" srcset="">
-                <h3> <a href="http://"> News Heading Here</a></h3>
+                <img src="static\images\news3.jpg" class="img-thumbnail">
+                <h3> <a href="http://"> News Heading 1</a></h3>
                 <div class="post-date">Jul 13, 2022</div>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis nulla nesciunt excepturi.</p>
                 <a href="" class="readmore">Read More</a>
@@ -147,8 +293,8 @@
         </div>
         <div class="col-lg-3 col-md-6">
             <div class="news-post">
-                <img src="static\images\news4.jpg" alt="" srcset="">
-                <h3> <a href="http://"> News Heading Here</a></h3>
+                <img src="static\images\news4.jpg" class="img-thumbnail">
+                <h3> <a href="http://"> News Heading 1</a></h3>
                 <div class="post-date">Jul 13, 2022</div>
                 <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Veritatis nulla nesciunt excepturi.</p>
                 <a href="" class="readmore">Read More</a>

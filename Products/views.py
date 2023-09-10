@@ -3,7 +3,7 @@ from django.http.response import Http404, HttpResponse
 from django.shortcuts import render
 from django.views import generic
 # from django.urls import reverse_lazy
-from .models import Products,Content
+from .models import Products,Content,ProductsEnrolledUser
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib import messages
@@ -49,28 +49,38 @@ def Input(request):
 def ProductIndex(request):
     # try:
         allproducts = []
-        products = Products.objects.values('category','productid')
+        products = Products.objects.values('categoryF','productid')
         proj = []
-        cate = {pj['category'] for pj in products}
+        cate = {pj['categoryF'] for pj in products}
         cate = list(cate)
         dio = {key : 0 for key in cate}
         for produ in products:
-            dio[produ['category']] += 1
-        print(dio)
+            dio[produ['categoryF']] += 1
         for pro in dio.keys():
-            ppjj = Products.objects.filter(category = pro)
+            ppjj = Products.objects.filter(categoryF = pro)
             n = dio[pro]
             nslides = n//3 + ceil((n/3)-(n//3))
             allproducts.append([ppjj,range(1,n), nslides])
             
         if len(allproducts):
             return render(request,'Products/index.html',{'Projects':allproducts})
-        return render(request,'generalPages\commingSoonPage.html')
+        return render(request,'generalPages/commingSoonPage.html')
     # except:
     #     return HttpResponse("There is some error at server please try again later !")
 
+def get_project_by_user(product,user):
+    try:
+        return ProductsEnrolledUser.objects.get(profileId=user,productid=product)
+    except :
+        return None
+
 def Productview(request,pid):
     try:
+        productObj = Products.objects.get(productid = pid)
+        product_by_user = get_project_by_user(productObj,request.user)
+        if product_by_user is None:
+            return render(request,'generalPages/NotEnrolled.html')
+
         ppjj = Products.objects.filter(productid = pid).values()
         fileup = Content.objects.filter(projasso = pid).values()
         ppjj = ppjj[0]

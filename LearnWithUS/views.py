@@ -27,7 +27,7 @@ def Home2(request):
     if len(allnss):
         print("This is all obj",allnss)
         return render(request,'LearnWithUS/Home2.html',{'allnos':allnss} )
-    return render(request,'generalPages\commingSoonPage.html')
+    return render(request,'generalPages/commingSoonPage.html')
 
 def notesview(request,nkid):
     ppjj = LearnMODEL.objects.filter(LearnModelid = nkid).values()

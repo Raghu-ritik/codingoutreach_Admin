@@ -5,6 +5,9 @@ from Projects1.models import Projects1
 # Create your models here.
 
 class Contact(models.Model):
+    class Meta:
+        verbose_name = "Contact Us"
+        verbose_name_plural = "Contact Us"
     email = models.EmailField()
     name = models.CharField(max_length=50)
     phone_regex = RegexValidator(regex = r'^\+?1?\d{10}$',message = "The format should be exactly be of 10 digits"   )
@@ -16,6 +19,9 @@ class Contact(models.Model):
 
 
 class Student_B(models.Model):
+    class Meta:
+        verbose_name = "Users Info"
+        verbose_name_plural = "Users Info"
     CATEGORY = (
 		('Student', 'Student'),
 		('Seller', 'seller'),
@@ -41,7 +47,9 @@ class Student_B(models.Model):
         return self.email
 
 class SocialLinks(models.Model):
-
+    class Meta:
+        verbose_name = "Social Links"
+        verbose_name_plural = "Social Links"
     SIid = models.AutoField(primary_key=True)
     profileId = models.ForeignKey(User,blank=True,on_delete=models.CASCADE,null=True)
     Github = models.CharField(max_length=200,blank=True,null=True)
@@ -54,8 +62,10 @@ class SocialLinks(models.Model):
 
 
 
-class Courseenrolled(models.Model):
-
+class ProjectsEnrolled(models.Model):
+    class Meta:
+        verbose_name = "Project Enrolled Users"
+        verbose_name_plural = "Project Enrolled Users"
     CEid = models.AutoField(primary_key=True)
     profileId = models.ForeignKey(User,verbose_name="User ID",blank=True,on_delete=models.CASCADE,null=True)
     courseid = models.ManyToManyField(Projects1,verbose_name="Courses Enrolled ID",blank=True)

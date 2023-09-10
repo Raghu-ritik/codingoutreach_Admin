@@ -3,10 +3,10 @@
 {% block title %}  CodingOutreach - Coding smith's on move {% endblock %} 
 {% block cssd %}
 {% load static %}
-{% static 'LearnWithUS/Home2.css' %} {% endblock %}
+  <link rel="stylesheet" href="{% static 'LearnWithUS/Home2.css' %}">
+{% endblock %}
 {% block jsd %} 
-{% load static %}
-{% static 'Projects1/index.js' %} 
+  <script src="{% static 'Projects1/index.js' %}"></script>
 {% endblock %}
 {% block body %}
 

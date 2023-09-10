@@ -2,11 +2,10 @@
 {% block title %}  NB projects view - For Everyone {% endblock %} 
 {% block cssd %} 
 {% load static %}
-{% static 'LearnWithUS/projview.css' %} 
+<link rel="stylesheet" href="{% static 'LearnWithUS/projview.css' %}">
 {% endblock %}
-{% block jsd %} 
-{% load static %}
-{% static 'Projects1/projview.js' %} 
+{% block jsd %}
+<script src="{% static 'Projects1/projview.js' %}"></script>
 {% endblock %}
 {% block body %}
 <div class="container container-content">

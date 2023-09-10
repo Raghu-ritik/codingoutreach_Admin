@@ -1,13 +1,12 @@
 {% extends 'Home/navbar.html' %}
-
 {% block title %}  CodingOutreach - For Everyone {% endblock %} 
 {% block cssd %} 
 {% load static %}
-{% static 'registration.css' %} {% endblock %}
-
+<link rel="stylesheet" href="{% static 'registration.css' %}">
+{% endblock %}
 {% block jsd %} 
-{% load static %}
-{% static 'registration.js' %} {% endblock %}
+<script src="{% static 'registration.js' %}"></script>
+{% endblock %}
 
 {% block body %}
 <div class="cont">

@@ -1,3 +1,5 @@
+from statistics import mode
+from unicodedata import category
 from django.db import models
 
 # Create your models here.
@@ -7,8 +9,18 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.utils.timezone import now
 
+class CategoryField(models.Model):
+    class Meta:
+        verbose_name,verbose_name_plural = "Products Category Field","Products Category Field"
+    categoryId = models.AutoField(primary_key=True)
+    categoryName = models.CharField(verbose_name="Category Name",max_length=35)
+    def __str__(self) -> str:
+        return str(self.categoryName)
+
 # Create your models here.
 class Products(models.Model):
+    class Meta:
+        verbose_name,verbose_name_plural = "Site Products","Site Products"
     RATING = (
         (1,1),
         (2,2),
@@ -16,18 +28,11 @@ class Products(models.Model):
         (4,4),
         (5,5),
     )
-    categ = (
-        ('Web development','Web development'),
-        ('Machine Learning','Machine Learning'),
-        ('Data Science','Data Science'),
-        ('PHP','PHP'),
-        ('C/C++','C/C++'),
-        ('Others','Others')
-    )    
+   
 
     productid = models.AutoField(primary_key=True)
     productname = models.CharField(verbose_name="Product Name",max_length=100)
-    category = models.CharField(verbose_name="Category",max_length=35,null=True,choices=categ,default="Machine Learning")
+    categoryF = models.ForeignKey(CategoryField,verbose_name="Category",on_delete=models.SET_NULL, null=True, blank=True) 
     desc = models.CharField(verbose_name="Description",max_length=500,blank=True)
     creator = models.CharField(verbose_name="Creator Name",max_length=50,blank=True)
     datecreated = models.DateTimeField(verbose_name="Date Created",default=now)
@@ -41,6 +46,8 @@ class Products(models.Model):
         return str(self.productid)+" "+str(self.productname)
 
 class Content(models.Model):
+    class Meta:
+        verbose_name,verbose_name_plural = "Product Conent","Product Conent"
     Contentid = models.AutoField(primary_key=True)
     projasso = models.ForeignKey(Products,verbose_name="Project ID",blank=False,on_delete=models.CASCADE,null=True)
     filename = models.CharField(verbose_name="File Name",max_length=50)
@@ -49,3 +56,13 @@ class Content(models.Model):
 
     def __str__(self):
         return self.filename
+
+class ProductsEnrolledUser(models.Model):
+    class Meta:
+        verbose_name,verbose_name_plural = "Product Enrolled Users","Product Enrolled Users"
+    CEid = models.AutoField(primary_key=True)
+    profileId = models.ForeignKey(User,verbose_name="User ID",blank=True,on_delete=models.CASCADE,null=True)
+    productid = models.ManyToManyField(Products,verbose_name="Courses Enrolled ID",blank=True)
+
+    def __str__(self):
+        return  str(self.profileId) + str(self.productid)

@@ -3,7 +3,8 @@ from pyexpat import model
 from django.contrib import admin
 
 # Register your models here.
-from .models import Content, Projects1,Pelcon
+from .models import Content, Projects1
+ 
 
 class ContentInline(admin.TabularInline):
     model = Content
@@ -11,11 +12,11 @@ class ContentInline(admin.TabularInline):
 @admin.register(Projects1)
 class CustomProjects(admin.ModelAdmin):
     model = Projects1
-    list_display = ('projectname','category','rating')
-    list_filter = ('category','Availability','rating')
+    list_display = ('projectname','categoryF','rating')
+    list_filter = ('categoryF','Availability','rating')
 
     fieldsets = (
-        (None, {'fields': ('projectname','category','desc','creator','datecreated','purpose','Availability','rating')}),
+        (None, {'fields': ('projectname','categoryF','desc','creator','datecreated','purpose','Availability','rating')}),
         ('Cover image and video', {'fields': ('Image','introvideo')}),
     )
 
