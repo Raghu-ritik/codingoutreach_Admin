@@ -1,7 +1,11 @@
+from pyexpat import model
+from statistics import mode
+from textwrap import dedent
 from django.db import models
 from django.core.validators import RegexValidator
 from django.contrib.auth.models import User
 from Projects1.models import Projects1
+
 # Create your models here.
 
 class Contact(models.Model):
@@ -69,3 +73,38 @@ class ProjectsEnrolled(models.Model):
     CEid = models.AutoField(primary_key=True)
     profileId = models.ForeignKey(User,verbose_name="User ID",blank=True,on_delete=models.CASCADE,null=True)
     courseid = models.ManyToManyField(Projects1,verbose_name="Courses Enrolled ID",blank=True)
+
+class DbLimitException(BaseException):
+      pass
+
+class SiteSettings(models.Model):
+    class Meta:
+        verbose_name = "Site Settings"
+        verbose_name_plural = "Site Setings"
+    SiteName = models.CharField(default="CodingOutReach",max_length=100)
+    SiteHeadSLogan = models.CharField(default="Coding smith's on move",max_length=500)
+    SiteUrl = models.CharField(default="www.codingoutrach.com",max_length=200)
+
+    contactusEmail = models.EmailField(default="coonnect@codingoutreach.com")
+    adminEmail  = models.EmailField(default="admin@codingoutreach.com")
+    
+    usersCanRegister = models.BooleanField(default=True,null=True)
+    ProjectsAvailable = models.BooleanField(default=False,null=True)
+    ProductsAvailable = models.BooleanField(default=False,null=True)
+    LearnWithUsAvailable = models.BooleanField(default=False,null=True)
+    NotesAvailable = models.BooleanField(default=False,null=True)
+    SiteLogo = models.ImageField(upload_to='siteMedia/SiteLogo', default="", null=True, blank=True)
+    
+    updatedOn = models.DateTimeField(auto_now_add=True,null=True)
+
+    BannerImg1 =  models.ImageField(upload_to='siteMedia\SiteBanner', default="", null=True, blank=True)
+    BannerImg2 =  models.ImageField(upload_to='siteMedia\SiteBanner', default="", null=True, blank=True)
+    BannerImg3 =  models.ImageField(upload_to='siteMedia\SiteBanner', default="", null=True, blank=True)
+    BannerImg4 =  models.ImageField(upload_to='siteMedia\SiteBanner', default="", null=True, blank=True)
+    
+    NewsApiURL = models.CharField(blank=True,null=True, max_length=200)
+    NewAPIToken = models.CharField(blank=True,null=True, max_length=200)
+
+    def __str__(self) -> str:
+        return self.SiteName
+    

@@ -30,7 +30,7 @@ class subjectOfNotes(models.Model):
 
 class branchForNotes(models.Model):
     class Meta:
-        verbose_name,verbose_name_plural = "Branch","Branch"
+        verbose_name,verbose_name_plural = "Semester","Semester"
     branchId = models.AutoField(primary_key=True)
     branchName = models.CharField(verbose_name="branch Name",max_length=35)
     def __str__(self) -> str:
@@ -38,7 +38,7 @@ class branchForNotes(models.Model):
 
 class semeserForNotes(models.Model):
     class Meta:
-        verbose_name,verbose_name_plural = "Semester","Semester"
+        verbose_name,verbose_name_plural = "Branch","Branch"
     semesterId = models.AutoField(primary_key=True)
     semesterName = models.CharField(verbose_name="semester Name",max_length=35)
     def __str__(self) -> str:

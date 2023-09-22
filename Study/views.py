@@ -30,7 +30,9 @@ def Home2(request):
 
     # print("Project :: ",allnotes)
     # print("proj :: ",proj)
-    return render(request,'Study/Home2.html',{'allnos':allnss} )
+    if len(allnss):
+        return render(request,'Study/Home2.html',{'allnos':allnss} )
+    return render(request,'generalPages/commingSoonPage.html')
 
 def notesview(request,nkid):
     ppjj = notes1.objects.filter(notesid = nkid).values()

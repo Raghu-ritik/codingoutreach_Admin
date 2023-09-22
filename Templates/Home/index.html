@@ -4,7 +4,7 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'index.css' %}" />
 {% endblock %}
-{% block title %}  CodingOutreach - For Everyone {% endblock %} 
+{% block title %}  {{CurrSiteInfo.SiteName}} CodingOutreach - For Everyone {% endblock %} 
 
 {% block jsd %} 
     <script src="{% static 'js/Home/index.js' %}"></script>
@@ -23,39 +23,63 @@ index.js
         </div>
         <div class="carousel-inner">
         <div class="carousel-item active">
-            <img src="static\images\img-1.jpg" class="d-block w-100" alt="...">
+            <img src="media/{{CurrSiteInfo.BannerImg1}}" class="d-block w-100" alt="...">
             <div class="carousel-caption d-none lead d-md-block">
-                    <h2>Welcome to <span style="color:#FFDB99;" > Codingoutreach </span></h2>
-                    <p>Coding smith's on move </p>
+                    <h2>Welcome to <span style="color:#FFDB99;" > {{CurrSiteInfo.SiteName}} </span></h2>
+                    <p>{{CurrSiteInfo.SiteHeadSLogan}} </p>
                     <p>A Plateform for ML & DL solutions</p>
-                <a href="/project"><button class="btn btn-danger">Projects</button></a>
-                <a href="/products"><button class="btn btn-primary">DL solutions</button></a>
-                <a href="/LearnWithUS"><button class="btn btn-success">Learn With Us</button></a>
-                <a href="/Notes"><button class="btn btn-warning">Notes</button></a>
+                    {% if CurrSiteInfo.ProjectsAvailable is True %}
+                        <a href="/project"><button class="btn btn-danger">Projects</button></a>
+                    {% endif %}
+                    {% if CurrSiteInfo.ProductsAvailable  is True %}
+                        <a href="/products"><button class="btn btn-primary">DL solutions</button></a>
+                    {% endif %}
+                    {% if CurrSiteInfo.LearnWithUsAvailable is True %}
+                        <a href="/LearnWithUS"><button class="btn btn-success">Learn With Us</button></a>
+                    {% endif %}
+                    {% if CurrSiteInfo.NotesAvailable  is True %}
+                        <a href="/Notes"><button class="btn btn-warning">Notes</button></a>
+                    {% endif %}
             </div>
         </div>
         <div class="carousel-item">
-            <img src="static\images\img-2.jpg" class="d-block w-100" alt="...">
+            <img src="media/{{CurrSiteInfo.BannerImg2}}" class="d-block w-100" alt="...">
             <div class="carousel-caption d-none lead d-md-block">
-                <h2>Welcome to <span style="color:#FFDB99;" > Codingoutreach </span></h2>
-                <p>Coding smith's on move </p>
+                <h2>Welcome to <span style="color:#FFDB99;" > {{CurrSiteInfo.SiteName}} </span></h2>
+                <p>{{CurrSiteInfo.SiteHeadSLogan}} </p>
                 <p>A plateform for ML & DL solutions</p>
-                <a href="/project"><button class="btn btn-danger">Projects</button></a>
-                <a href="/products"><button class="btn btn-primary">DL solutions</button></a>
-                <a href="/LearnWithUS"><button class="btn btn-success">Learn with Us</button></a>
-                <a href="/Notes"><button class="btn btn-warning">Notes</button></a>
+                {% if CurrSiteInfo.ProjectsAvailable is True %}
+                    <a href="/project"><button class="btn btn-danger">Projects</button></a>
+                {% endif %}
+                {% if CurrSiteInfo.ProductsAvailable  is True %}
+                    <a href="/products"><button class="btn btn-primary">DL solutions</button></a>
+                {% endif %}
+                {% if CurrSiteInfo.LearnWithUsAvailable is True %}
+                    <a href="/LearnWithUS"><button class="btn btn-success">Learn With Us</button></a>
+                {% endif %}
+                {% if CurrSiteInfo.NotesAvailable  is True %}
+                    <a href="/Notes"><button class="btn btn-warning">Notes</button></a>
+                {% endif %}
             </div>
         </div>
         <div class="carousel-item">
-            <img src="static\images\img-3.jpg" class="d-block w-100" alt="...">
+            <img src="media/{{CurrSiteInfo.BannerImg3}}" class="d-block w-100" alt="...">
             <div class="carousel-caption d-none lead d-md-block">
-                <h2>Welcome to  <span style="color:#FFDB99;" > Codingoutreach </span></h2>
-                <p>Coding smith's on move </p>
+                <h2>Welcome to  <span style="color:#FFDB99;" > {{CurrSiteInfo.SiteName}} </span></h2>
+                <p>{{CurrSiteInfo.SiteHeadSLogan}} </p>
                 <p>A Plateform for ML & DL solutions</p>
-                <a href="/project"><button class="btn btn-danger">Projects</button></a>
-                <a href="/products"><button class="btn btn-primary">DL solutions</button></a>
-                <a href="/LearnWithUS"><button class="btn btn-success">Learn With Us</button></a>
-                <a href="/Notes"><button class="btn btn-warning">Notes</button></a>
+                {% if CurrSiteInfo.ProjectsAvailable is True %}
+                    <a href="/project"><button class="btn btn-danger">Projects</button></a>
+                {% endif %}
+                {% if CurrSiteInfo.ProductsAvailable  is True %}
+                    <a href="/products"><button class="btn btn-primary">DL solutions</button></a>
+                {% endif %}
+                {% if CurrSiteInfo.LearnWithUsAvailable is True %}
+                    <a href="/LearnWithUS"><button class="btn btn-success">Learn With Us</button></a>
+                {% endif %}
+                {% if CurrSiteInfo.NotesAvailable  is True %}
+                    <a href="/Notes"><button class="btn btn-warning">Notes</button></a>
+                {% endif %}
         </div>
         </div>
         </div>
@@ -123,7 +147,8 @@ index.js
 </section>
 <!-- section1 ends  -->
 
-<!-- Project carousel -->
+{% if not NoProductFound %}
+<!-- Product carousel -->
 <div class="container-fluid sec">
     <div class="row">
         <div class="col-md-12">
@@ -186,11 +211,11 @@ index.js
         </button>
     </div>
 </div>
-<!-- Project carousel ends  -->
+<!-- Product carousel ends  -->
+{% endif %}
 
 
-
-
+{% if not NoProjectFound %}
 <!-- Projects carousel -->
 <div class="container-fluid sec">
     <div class="row">
@@ -226,18 +251,18 @@ index.js
                                                 {{project.desc|slice:"0:100"}}
                                             </div>
                                             <div class="col-md-12">
-                                                <button class="success">Access Now</button>
+                                                <button class="success"> Access Now {{project.projectid}}</button>
                                             </div>
                                         </div>
                                     </div>
                                 
                                 </div>
                             </div>
-                            {% if lastProjectID == project.projectid %}
-                            <div class="col-md-4 p-2 container-robot" style="padding: 11% !important;">
-                                <a href="/project"><button class="btn btn-outline-primary btn-lg">Show More</button></a>
-                            </div>
-                            {% endif %}
+                                {% if lastProjectID == project.projectid %}
+                                <div class="col-md-4 p-2 container-robot" style="padding: 11% !important;">
+                                    <a href="/project"><button class="btn btn-outline-primary btn-lg">Show More</button></a>
+                                </div>
+                                {% endif %}
                             {% endfor %}
                         </div>
                     </div>
@@ -255,9 +280,77 @@ index.js
     </div>
 </div>
 <!-- Project carousel ends  -->
+{% endif %}
+
+{% if not NoNotesFound %}
+<!-- Notes carousel -->
+<div class="container-fluid sec">
+    <div class="row">
+        <div class="col-md-12">
+            <h2 class="section-head">Notes</h2>
+        </div>
+    </div>
+    <div id="carouselProductsCaptions" class="carousel slide" data-bs-ride="carousel">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselProductsCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselProductsCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        </div>
+        <div class="carousel-inner">
+            {% for notes in allnotes %}
+                {% for key, value in notes.items %}
+                    {% if key == 0 %}
+                        <div class="carousel-item active " >
+                        <div class="row project-product-row">
+                    {% else %}
+                        <div class="carousel-item">
+                        <div class="row project-product-row">
+                    {% endif %}
+                            {% for note in value %}
+                            <div class="col-md-4 p-2 container-robot" >
+                                <img src="/media/{{ product.Image }}" class="d-block w-100" alt="Image 5">                
+                                <div class="overlay">
+                                    <div class="container">
+                                        <div class="row">
+                                            <div class="col-md-12">
+                                                {{note.notestitle}}
+                                            </div>
+                                            <div class="col-md-12">
+                                                {{note.notedesc|slice:"0:100"}}
+                                            </div>
+                                            <div class="col-md-12">
+                                                <button class="success">Access Now</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                
+                                </div>
+                            </div>
+                            {% if lastNotesId == note.notesid %}
+                            <div class="col-md-4 p-2 container-robot" style="padding: 11% !important;" >
+                                <a href="/notes"><button class="btn btn-outline-primary btn-lg">Show More</button></a>
+                            </div>
+                            {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                    {% endfor %}
+                {% endfor %}
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselProductsCaptions" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselProductsCaptions" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</div>
+{% endif %}
+<!-- Notes carousel ends  -->
 
 
-
+{% if not NoNewsFound %}
 <!-- News  -->
 <div id="news" class="container sec">
     <div class="row">
@@ -303,7 +396,7 @@ index.js
     </div>
 </div>
 <!-- News ends  -->
-
+{% endif %}
 
 
 

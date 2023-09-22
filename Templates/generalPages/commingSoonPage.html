@@ -10,12 +10,33 @@
 
 <div class="bgimg" style="background-image: url('static/images/generalPages/Comming_Soon.jpg');">
     <div class="middle">
-      <h1>COMING SOON</h1>
-      <hr>
-      <p>35 days</p>
+      <div class="countdown">
+        <h1>COMING SOON</h1>
+        <div id="timer">
+            <div class="time-unit">
+                <span id="days">00</span>
+                <span class="time-label">Days</span>
+            </div>
+            <div class="time-unit">
+                <span id="hours">00</span>
+                <span class="time-label">Hours</span>
+            </div>
+            <div class="time-unit">
+                <span id="minutes">00</span>
+                <span class="time-label">Minutes</span>
+            </div>
+            <div class="time-unit">
+                <span id="seconds">00</span>
+                <span class="time-label">Seconds</span>
+            </div>
+        </div>
+    </div>
+
     </div>
   </div>
+<script>
 
+</script>
 
 
 {% load static %}
@@ -23,3 +44,10 @@
 
 
 {% endblock %}
+
+{% block jsd %} 
+{% load static %}
+<script src="{% static 'generalPages/commingSoomPage.js' %}"></script>
+{% endblock %}
+
+

@@ -1,12 +1,13 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import Contact, Student_B, SocialLinks,ProjectsEnrolled
+from .models import Contact, SiteSettings, Student_B, SocialLinks,ProjectsEnrolled
 
 admin.site.register(Contact)
 # admin.site.register(Student_B)
 admin.site.register(SocialLinks)
 admin.site.register(ProjectsEnrolled)
+admin.site.register(SiteSettings)
 
 
 @admin.register(Student_B)
