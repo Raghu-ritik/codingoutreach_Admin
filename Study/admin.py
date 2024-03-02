@@ -18,7 +18,7 @@ class CustomProjects(admin.ModelAdmin):
     fieldsets = (
         (None, {'fields': ('notestitle','category')}),
         ('Education Category', {'fields': ('coursefor','subject','semeter','branch')}),
-        ('video links', {'fields': ('youtubevideolink',)}),
+        ('video links', {'fields': ('youtubevideolink','bannerImage')}),
         ('Price', {'fields': ('price',)}),
         ('Notes Description', {'fields': ('notedesc',)}),
     )

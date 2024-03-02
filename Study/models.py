@@ -55,6 +55,7 @@ class notes1(models.Model):
     subject = models.ForeignKey(subjectOfNotes,      verbose_name="Subject",       max_length=50,blank=True, on_delete=models.SET_NULL, null=True)
     semeter = models.ForeignKey(branchForNotes,      verbose_name="Semester",      max_length=30,blank=True, on_delete=models.SET_NULL, null=True)
     branch = models.ForeignKey(semeserForNotes,      verbose_name="Branch",        max_length=30,blank=True, on_delete=models.SET_NULL, null=True)
+    bannerImage = models.ImageField(verbose_name="Banner Image Topic", upload_to='Study/notes_covers/', null=True,default="Study/notes_covers/Notes Default Page.jpg")
     youtubevideolink = models.CharField(             verbose_name="Youtube Video Link",max_length=300,null=True, blank=True)
     price = models.IntegerField(                     verbose_name="Course Price",      blank=True,               default=99)
     notedesc = models.TextField(                     verbose_name="Notes Description", max_length=800,           blank=True)

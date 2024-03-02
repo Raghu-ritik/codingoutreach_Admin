@@ -33,7 +33,7 @@ def GetSiteInfo(SiteId=1):
 def Home(request):
     CurrSiteInfo = GetSiteInfo()
 
-    lastProjectID,lastProductID = 0,0
+    lastProjectID,lastProductID,lastnotesID = 0,0,0
     allproducts = []
     allprojects = []
     allnotes = []

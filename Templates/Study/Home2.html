@@ -17,8 +17,9 @@
     {% for note in notes %}
     <!-- style="background-image: url('/media/{{ note.Image }}');"  -->
   <div class="card">
-    <div class="card-image"  > <iframe src="{{ note.youtubevideolink }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>   </div>
-        <div class="card-text">
+    <div class="card-image"> 
+      <img src="/media/{{ note.bannerImage}}" class="card-image"   alt="" srcset="">
+    </div>    <div class="card-text">
             <h2>{{ note.notestitle  | slice:"0:22"}}..</h2>
             <p>{{ note.notedesc | slice:"0:100" }}...</p>
         </div>
