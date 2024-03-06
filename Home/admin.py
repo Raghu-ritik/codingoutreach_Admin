@@ -6,7 +6,7 @@ from .models import Contact, SiteSettings, Student_B, SocialLinks,ProjectsEnroll
 admin.site.register(Contact)
 # admin.site.register(Student_B)
 admin.site.register(SocialLinks)
-admin.site.register(ProjectsEnrolled)
+
 admin.site.register(SiteSettings)
 
 
@@ -17,11 +17,9 @@ class CustomProjects(admin.ModelAdmin):
     list_filter = ('date_created','majorverified','usertype','basiverification')
 
     fieldsets = (
-        (None, {'fields': ('notestitle','category')}),
-        ('Education Category', {'fields': ('coursefor','subject','semeter','branch')}),
-        ('video links', {'fields': ('youtubevideolink',)}),
-        ('Price', {'fields': ('price',)}),
-        ('Notes Description', {'fields': ('notedesc',)}),
+ 
+ 
+ 
     )
 
 

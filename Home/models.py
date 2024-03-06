@@ -30,7 +30,7 @@ class Student_B(models.Model):
 		('Student', 'Student'),
 		('Seller', 'seller'),
         ('Adminuser', 'Adminuser'),
-			) 
+	) 
 
     studid = models.AutoField(primary_key=True)
 
@@ -61,8 +61,6 @@ class SocialLinks(models.Model):
     Linkedin = models.CharField(max_length=200,blank=True,null=True)
     filled = models.BooleanField(default=False)
 
-# class AcademicQuali(models.Model):
-#     AQid = models.AutoField(primary_key=True)
 
 
 

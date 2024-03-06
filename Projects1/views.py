@@ -63,15 +63,7 @@ def Home1(request):
             ppjj = Projects1.objects.filter(categoryF = pro)
             n = dio[pro]
             nslides = n//3 + ceil((n/3)-(n//3))
-            allprojects.append([ppjj,range(1,n), nslides])
-        #     print("ppjj :: ", ppjj)
-        #     print("nslides :: ",nslides)
-        #     print("n",n)
-
-        # print("Project :: ",project)
-        # print("proj :: ",proj)
-        # print("allprojects :: ",allprojects)
-        
+            allprojects.append([ppjj,range(1,n), nslides])        
         if len(allprojects):
             return render(request,'Projects1/index.html',{'project':allprojects})
         return render(request,'generalPages/commingSoonPage.html')
@@ -98,22 +90,3 @@ def projview(request,pid):
     except :
         return HttpResponse("There is some error at server please try again later !")
 
-# class pelconView(generic.ListView):
-#     model = Pelcon
-#     template_name = 'Projects1/Pelcon.html'
-#     context_object_name = 'files'
-#     paginate_by = 2
-
-#     def get_queryset(self):
-#         return Pelcon.objects.order_by('id') 
-
-
-# class FileView(generic.ListView):
-#     model = Content
-#     template_name = 'Projects1/Pelcon.html'
-#     context_object_name = 'files'
-#     paginate_by = 2
-
-#     def get_queryset(self):
-
-#         return Pelcon.objects.order_by('id')

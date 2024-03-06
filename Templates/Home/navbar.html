@@ -61,10 +61,18 @@
                   Explore
                 </a>
                 <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><a class="dropdown-item" href="/project">Projects</a></li>
-                  <!-- <li><a class="dropdown-item" href="/products">DL solutions</a></li>
-                  <li><a class="dropdown-item" href="/LearnWithUS">Learn With us</a></li> -->
-                  <li><a class="dropdown-item" href="/Notes"> Notes </a></li>
+                  {% if CurrSiteInfo.ProjectsAvailable is True %}
+                      <a class="dropdown-item" href="/project"> Projects</a>
+                  {% endif %}
+                  {% if CurrSiteInfo.ProductsAvailable  is True %}
+                      <a class="dropdown-item" href="/products">DL solutions</a>
+                  {% endif %}
+                  {% if CurrSiteInfo.LearnWithUsAvailable is True %}
+                      <a class="dropdown-item" href="/LearnWithUS">Learn With Us</a>
+                  {% endif %}
+                  {% if CurrSiteInfo.NotesAvailable  is True %}
+                      <a class="dropdown-item" href="/Notes">Notes</a>
+                  {% endif %}
                 </ul>
               </li>
             </ul>
@@ -84,7 +92,7 @@
                 </button>
                 <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
                   {% if request.user.is_superuser %}
-                  <li><a class="dropdown-item" href="adminpageforadmin">Admin Panel</a></li>
+                  <li><a class="dropdown-item" href="/adminpageforadmin">Admin Panel</a></li>
                   {% else %}
                   <li><a class="dropdown-item" href="/usrpage/{{request.user}}">Profile</a></li>
                   {% endif %}
@@ -119,7 +127,7 @@
           <div class="col-md-4 col-sm-6">
               <div class="footer-widget">
                   <h4>About Company</h4>
-                  <p>We are an it company providing the project solutions and also after the project assitant .</p>
+                  <p>Explore, Connect, Create: Your journey begins here. Discover our services, build projects, and embrace learning with Codingoutreach.com</p>
                   <p>Working with us could be an wonderful opprtunity for person out there , our Team provides 24x7 assitant. </p>
               </div>
           </div>
@@ -129,9 +137,20 @@
                   <ul class="latest-News">
                       <li><a href="/">Home</a></li>
                       <li><a href="/contactus">Contact us</a></li>
-                      <!-- <li><a href="/project">Project</a></li>
-                      <li><a href="/products">DL solutions</a></li> -->
-                      <li><a href="/LearnWithUS">Learn with us</a></li>
+                      {% if CurrSiteInfo.ProjectsAvailable is True %}
+                        <li> <a href="/project">Projects</a></li>
+                      {% endif %}
+                      {% if CurrSiteInfo.ProductsAvailable  is True %}
+                          <li> <a href="/products"> DL solutions</a></li>
+                      {% endif %}
+                      {% if CurrSiteInfo.LearnWithUsAvailable is True %}
+                          <li> <a href="/LearnWithUS"> Learn With Us</a></li>
+                      {% endif %}
+                      {% if CurrSiteInfo.NotesAvailable  is True %}
+                          <li> <a href="/Notes"> Notes</a></li>
+                      {% endif %}
+
+              
                   </ul>    
               </div>
           </div>

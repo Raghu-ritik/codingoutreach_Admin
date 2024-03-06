@@ -5,7 +5,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: black;
+    background-color: #ab73705c;
     overflow: hidden;
     margin:0;
     padding:0;
@@ -82,7 +82,7 @@
     width: 100%;
     height: 100vh;
     z-index: 99999;
-    background-color: rgb(17, 16, 15);
+    background-color: #ab7370d1;
 
     display: flex;
     justify-content: center;

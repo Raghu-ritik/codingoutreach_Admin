@@ -4,7 +4,9 @@ from django.contrib import admin
 
 # Register your models here.
 from .models import Content, Projects1
- 
+from Home.models import ProjectsEnrolled
+
+admin.site.register(ProjectsEnrolled)
 
 class ContentInline(admin.TabularInline):
     model = Content

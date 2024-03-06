@@ -119,27 +119,40 @@ index.js
     <div class="container sec">
         <div class="row">
             <div class="col-md-12">
-                <h2 class="section-head">We us what you can get ?</h2>
+                <h2 class="section-head">From us what you can get ?</h2>
             </div>
             <div class="col-md-4 col-sm-6">
                 <div class="service-box">
                     <i class="fa fa-anchor"> </i>
                     <h3>Project Asistant</h3>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsam nobis ab ex sint quasi?</p>
+                    <p><ul>
+                        <li>Guiding Your Projects to Success</li>
+                        <li>Navigating the Project Maze</li>
+                        <li>Your Project’s Right-Hand Ally</li>
+                    </ul>
                 </div>
             </div>
             <div class="col-md-4 col-sm-6">
                 <div class="service-box">
                     <i class="fa fa-bar-chart"> </i>
                     <h3>Project Building</h3>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsam nobis ab ex sint quasi?</p>
+                    <p><ul>
+                        <li>Blueprints for Excellence</li>
+                        <li>Crafting Success Brick by Brick</li>
+                        <li>Elevate Your Projects with Us</li>
+                    </ul>  
                 </div>
             </div>
             <div class="col-md-4 col-sm-6">
                 <div class="service-box">
                     <i class="fa fa-diamond"> </i>
                     <h3>Learning Assistance</h3>
-                    <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ipsam nobis ab ex sint quasi?</p>
+                    <p>
+                        <ul>
+                            <li>Unlocking Knowledge, One Byte at a Time</li>
+                            <li>Empowering Lifelong Learning</li>
+                            <li>Your Learning Journey Starts Here</li>
+                        </ul>
                 </div>
             </div>
         </div>
@@ -147,7 +160,7 @@ index.js
 </section>
 <!-- section1 ends  -->
 
-{% if not NoProductFound %}
+{% if not NoProductFound and CurrSiteInfo.ProductsAvailable is True %}
 <!-- Product carousel -->
 <div class="container-fluid sec">
     <div class="row">
@@ -214,8 +227,8 @@ index.js
 <!-- Product carousel ends  -->
 {% endif %}
 
-
-{% if not NoProjectFound %}
+ 
+{% if not NoProjectFound and CurrSiteInfo.ProjectsAvailable is True %}
 <!-- Projects carousel -->
 <div class="container-fluid sec">
     <div class="row">
@@ -282,7 +295,7 @@ index.js
 <!-- Project carousel ends  -->
 {% endif %}
 
-{% if not NoNotesFound %}
+{% if not NoNotesFound and CurrSiteInfo.NotesAvailable is True %}
 <!-- Notes carousel -->
 <div class="container-fluid sec">
     <div class="row">
@@ -350,7 +363,7 @@ index.js
 <!-- Notes carousel ends  -->
 
 
-{% if not NoNewsFound %}
+{% if not NoNewsFound  %}
 <!-- News  -->
 <div id="news" class="container sec">
     <div class="row">
