@@ -10,6 +10,7 @@ urlpatterns = [
     path('',views.ProductIndex, name='product_index'),
     path('input/',views.Input, name='input form for data'),
     path('view/<int:pid>/',views.Productview, name='View the page of project'),
+    path('notenrolled',views.NotEnrolled, name='View the page if user is not enrolled into the project'),
 ]
 
 if settings.DEBUG:

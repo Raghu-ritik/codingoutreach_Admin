@@ -15,14 +15,6 @@ class Projects1(models.Model):
         (4,4),
         (5,5),
     )
-    # categ = (
-    #     ('Web development','Web development'),
-    #     ('Machine Learning','Machine Learning'),
-    #     ('Data Science','Data Science'),
-    #     ('PHP','PHP'),
-    #     ('C/C++','C/C++'),
-    #     ('Others','Others')
-    # )    
 
     projectid = models.AutoField(primary_key=True)
     projectname = models.CharField(verbose_name="Project Name",max_length=100,blank=False)
@@ -32,12 +24,20 @@ class Projects1(models.Model):
     datecreated = models.DateTimeField(verbose_name="Date Created",default=now)
     purpose = models.CharField(verbose_name="Purpose of Project",max_length=250,blank=True)
     Availability = models.BooleanField(verbose_name="Availability of Project",blank=True)
-    Image = models.ImageField(verbose_name="Image for Project",upload_to= "Projects1/images",blank=True)
+    Image = models.ImageField(verbose_name="Image for Project",default="Projects1/defaultImages/Peojects1Default.png",upload_to= "Projects1/images",blank=True)
     rating = models.IntegerField(verbose_name="Rating",choices=RATING,default=4)
     introvideo  = models.FileField(verbose_name="Video for Project",upload_to="Projects1/videos",blank=True)
 
     def __str__(self) -> str:
         return str(self.projectid) + str(self.projectname)
+
+class ProjectsEnrolled(models.Model):
+    class Meta:
+        verbose_name,verbose_name_plural = "Project Enrolled Users","Project Enrolled Users"
+
+    CEid = models.AutoField(primary_key=True)
+    profileId = models.ForeignKey(User,verbose_name="User ID",blank=True,on_delete=models.CASCADE,null=True)
+    courseid = models.ManyToManyField(Projects1,verbose_name="Courses Enrolled ID",blank=True)
 
 class Pelcon(models.Model):
     name= models.CharField(max_length=100)
@@ -63,3 +63,12 @@ class Content(models.Model):
 
 
 
+
+    # categ = (
+    #     ('Web development','Web development'),
+    #     ('Machine Learning','Machine Learning'),
+    #     ('Data Science','Data Science'),
+    #     ('PHP','PHP'),
+    #     ('C/C++','C/C++'),
+    #     ('Others','Others')
+    # )    

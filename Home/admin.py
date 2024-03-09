@@ -1,7 +1,7 @@
 from django.contrib import admin
 
 # Register your models here.
-from .models import Contact, SiteSettings, Student_B, SocialLinks,ProjectsEnrolled
+from .models import Contact, SiteSettings, Student_B, SocialLinks 
 
 admin.site.register(Contact)
 # admin.site.register(Student_B)

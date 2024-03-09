@@ -4,12 +4,17 @@ from django.shortcuts import render
 from django.http.response import Http404, HttpResponse
 from django.shortcuts import render
 from .models import LearnMODEL,notesfile
+from Home.models import SiteSettings
 from django.conf import settings
 from django.contrib import messages
 from math import ceil
 
+def GetSiteInfo(SiteId=1):
+    return SiteSettings.objects.filter(id=SiteId).values()[0]
+
 def Home2(request):
     # project = Projects1.objects.all()
+    params = {"CurrSiteInfo":GetSiteInfo()}
     allnss = []
     allnotes = LearnMODEL.objects.values('SubLearnHeading','LearnTitle')
     proj = []
@@ -18,15 +23,14 @@ def Home2(request):
     dio = {key : 0 for key in cate}
     for produ in allnotes:
         dio[produ['SubLearnHeading']] += 1
-    print(dio)
     for pro in dio.keys():
         ppjj = LearnMODEL.objects.filter(SubLearnHeading = pro)
         n = dio[pro]
         nslides = n//3 + ceil((n/3)-(n//3))
         allnss.append([ppjj,range(1,n), nslides])
     if len(allnss):
-        print("This is all obj",allnss)
-        return render(request,'LearnWithUS/Home2.html',{'allnos':allnss} )
+        params['allnos'] = allnss
+        return render(request,'LearnWithUS/Home2.html',params )
     return render(request,'generalPages/commingSoonPage.html')
 
 def notesview(request,nkid):

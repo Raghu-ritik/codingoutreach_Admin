@@ -37,3 +37,8 @@
    font-size: 1rem;
    margin-bottom: 3rem;
 }
+
+.img-n{
+    max-width: 400px ;
+    max-height: 500px ;
+}

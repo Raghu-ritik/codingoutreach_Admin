@@ -43,7 +43,7 @@ class Student_B(models.Model):
     usertype = models.CharField(max_length=20, null=True, choices=CATEGORY)
     basiverification = models.BooleanField(default=False)
     majorverified = models.BooleanField(default=False)
-    profile_pic = models.ImageField(upload_to='Users/stud_B/',default="profile1.png", null=True, blank=True)
+    profile_pic = models.ImageField(upload_to='Users/stud_B/',default="Users/DefalutUserImage/userDefault.png", null=True, blank=True)
     date_created = models.DateTimeField(auto_now_add=True, null=True)
     colid = models.ImageField(upload_to='Users/stud_B/', default="", null=True, blank=True)
 
@@ -63,14 +63,6 @@ class SocialLinks(models.Model):
 
 
 
-
-class ProjectsEnrolled(models.Model):
-    class Meta:
-        verbose_name = "Project Enrolled Users"
-        verbose_name_plural = "Project Enrolled Users"
-    CEid = models.AutoField(primary_key=True)
-    profileId = models.ForeignKey(User,verbose_name="User ID",blank=True,on_delete=models.CASCADE,null=True)
-    courseid = models.ManyToManyField(Projects1,verbose_name="Courses Enrolled ID",blank=True)
 
 class DbLimitException(BaseException):
       pass

@@ -1,7 +1,9 @@
 from unicodedata import category
 from django.http.response import Http404, HttpResponse
+from django.http import HttpResponseRedirect
 from django.shortcuts import render
 from django.views import generic
+from Home.models import SiteSettings, Student_B
 # from django.urls import reverse_lazy
 from .models import Products,Content,ProductsEnrolledUser
 from django.conf import settings
@@ -46,8 +48,12 @@ def Input(request):
 
         return render(request,'Projects1/input.html')
 
+def GetSiteInfo(SiteId=1):
+    return SiteSettings.objects.filter(id=SiteId).values()[0]
+
 def ProductIndex(request):
-    # try:
+    try:
+        params = {"CurrSiteInfo":GetSiteInfo()}
         allproducts = []
         products = Products.objects.values('categoryF','productid')
         proj = []
@@ -63,29 +69,39 @@ def ProductIndex(request):
             allproducts.append([ppjj,range(1,n), nslides])
             
         if len(allproducts):
-            return render(request,'Products/index.html',{'Projects':allproducts})
+            params['Projects'] = allproducts
+            return render(request,'Products/index.html',params)
         return render(request,'generalPages/commingSoonPage.html')
-    # except:
-    #     return HttpResponse("There is some error at server please try again later !")
+    except:
+         return render(request,'ErrorPages\Error504.html',params)
+
+def NotEnrolled(request):
+    return render(request,'generalPages/NotEnrolled.html')
+
+def get_user_info(user_name):
+     return User.objects.filter(username=user_name).values('id', 'username', 'email', 'is_superuser')[0]
 
 def get_project_by_user(product,user):
     try:
-        return ProductsEnrolledUser.objects.get(profileId=user,productid=product)
+        return ProductsEnrolledUser.objects.get(profileId=User.objects.get(username=user),productid=product)
     except :
         return None
 
 def Productview(request,pid):
     try:
+        user_info = get_user_info(request.user)
+        params = {"CurrSiteInfo":GetSiteInfo(),"UserInfo":user_info}
         productObj = Products.objects.get(productid = pid)
         product_by_user = get_project_by_user(productObj,request.user)
         if product_by_user is None:
-            return render(request,'generalPages/NotEnrolled.html')
-
+            if not user_info['is_superuser']:
+                return HttpResponseRedirect("/project/notenrolled")
+        
         ppjj = Products.objects.filter(productid = pid).values()
         fileup = Content.objects.filter(projasso = pid).values()
-        ppjj = ppjj[0]
 
-        # print(fileup)
-        return render(request,'Products/productview.html',{'project':ppjj,'filesup':fileup})
+        params["project"] = ppjj[0]
+        params["filesup"] = fileup
+        return render(request,'Products/productview.html',params)
     except:
-        return HttpResponse("There is some error at server please try again later !")
+         return render(request,'ErrorPages\Error504.html',params)

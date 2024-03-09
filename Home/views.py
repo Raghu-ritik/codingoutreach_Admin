@@ -2,26 +2,26 @@ from django.core.exceptions import NON_FIELD_ERRORS
 from django.http import response
 from django.http.response import HttpResponse
 from django.shortcuts import render,redirect
-from .forms import Contactusfrom
+
 from django.contrib.auth.models import User
-from Projects1.models import Projects1
+from .models import Student_B, SiteSettings, Contact
+from Projects1.models import Projects1, ProjectsEnrolled
 from Products.models import Products
 from Study.models import notes1
+
+from NB import settings
 
 from django.contrib.auth import authenticate,login,logout
 from django.contrib.auth import login as auth_login
 from django.contrib.auth.models import Group
-from django.db import IntegrityError
-from .models import Student_B,SocialLinks,ProjectsEnrolled,SiteSettings
 from django.contrib import messages
 from random import randint
 import re,math
 
-from NB import settings
 from django.core.mail import EmailMessage
 from .tokens import account_activation_token
 from django.core.mail import send_mail
-# from django.contrib.sites.models import Site
+
 from django.contrib.sites.shortcuts import get_current_site
 from django.utils.encoding import force_bytes, force_text, force_text
 from django.utils.http import urlsafe_base64_decode,urlsafe_base64_encode
@@ -32,7 +32,6 @@ def GetSiteInfo(SiteId=1):
 
 def Home(request):
     CurrSiteInfo = GetSiteInfo()
-
     lastProjectID,lastProductID,lastnotesID = 0,0,0
     allproducts = []
     allprojects = []
@@ -41,10 +40,11 @@ def Home(request):
     NoProductFound = False
     NoProjectFound = False
     products = Products.objects.values('productid')
-    n = len(products)
+ 
     subList = []
     count = 0
-    if len(products)<1:
+    # =========================== projects=====================================
+    if len(products)<5:
         NoProductFound = True
     else:
         for index, productId in enumerate(products):
@@ -60,10 +60,11 @@ def Home(request):
                 subList = []
                 count += 1
                 break
+    # =================================Products==========================================
     projects = Projects1.objects.values('projectid')
     subList = []
     count = 0
-    if len(products)<1:
+    if len(projects)<5:
         NoProjectFound= True
     else:
         for index, projectId in enumerate(projects):
@@ -79,10 +80,11 @@ def Home(request):
                 subList = []
                 count += 1
                 break
+    ############################################### Notes #######################################
     Note = notes1.objects.values('notesid')
     subList = []
     count = 0
-    if len(Note) < 1:
+    if len(Note) < 5:
         NoNotesFound = True
     else:
         for index, NoteId in enumerate(Note):
@@ -97,20 +99,19 @@ def Home(request):
                 allnotes.append({count:subList})
                 subList = []
                 count += 1
-                break     
-    params = {"CurrSiteInfo":CurrSiteInfo,"NoNewsFound":True,"NoProductFound":True,"NoProjectFound":NoProjectFound,"NoNotesFound":NoNotesFound}
+                break   
+      
+    params = {"CurrSiteInfo":CurrSiteInfo,"NoNewsFound":True,"NoProductFound":NoProductFound,"NoProjectFound":NoProjectFound,"NoNotesFound":NoNotesFound}
     if not NoProductFound:
         params["allproducts"] = allproducts
         params["lastProductID"] = lastProductID
     if not NoProjectFound:
-        params["allprojects"] = allproducts 
+        params["allprojects"] = allprojects 
         params["lastProjectID"] = lastProjectID
     if not NoNotesFound:
         params["allnotes"] = allnotes
         params["lastNotesId"] = lastnotesID
-    print("Last Product ID",lastProductID)
 
-    # {"allproducts":allproducts,"allprojects":allprojects,"allnotes":allnotes,"lastProjectID":lastProjectID,'lastProductID':lastProductID,'lastNotesId':lastnotesID}
     return render(request,'Home/index.html',params)
 
 def valiemail(emailva):
@@ -150,7 +151,6 @@ def Logout(request):
     except:
         return HttpResponse("There is some error at server please try again later !")
 
-
 def random_with_N_digits(n):
     range_start = 10**(n-1)
     range_end = (10**n)-1
@@ -182,7 +182,7 @@ def register(request):
                 return redirect('/register')
             username = 'U'+ email[:3]+str(random_with_N_digits((len(email)%5)+1))
 
-            print(fomtype)
+           
             if fomtype == "Student":
                 # Create the user
                 user_email=email
@@ -249,8 +249,6 @@ def activate(request,uidb64,token):
     else:
         return HttpResponse('Activation link is invalid or your account is already verified ! Try to Login')
     
-
-
 def contactus(request):
     try:
         if request.method == "POST":
@@ -258,34 +256,13 @@ def contactus(request):
             email = request.POST.get('emailadd')
             contactno = request.POST.get('contctno')
             descrip = request.POST.get('descrip')
-            print(name,email,contactno,descrip)
+            Contact.objects.create(name=name,email=email,contactno=contactno,query=descrip)
         return render(request,'Home/contactus.html',{} )
     except:
-        return HttpResponse("There is some error at server please try again later !")
-
-def contactus2(request):
-    if request.method == 'POST':
-        form = Contactusfrom(request.POST)
-        query = form
-        if form.is_valid(): #clean data 
-            if len(form.cleaned_data.get('query'))>10:
-                form.add_error('query' ,"Query length is not right ")
-            print(form.cleaned_data.get('email'))
-            form.save() 
-            return HttpResponse("Form is submitted ☺")
-            
-        else:
-            if len(form.cleaned_data.get('query'))>10:
-                form.add_error('query' ,"Query length is not right ")
-                form.errors['query'] = 'query lenght is not right .It shoud be more than 10 digits'
-            return render(request,'Home/contactus2.html',{'form':form})
-    return render(request,'Home/contactus2.html',{'form':Contactusfrom})
-
-
+        return render(request,'ErrorPages/Error504.html',{} )
 
 def aboutus(request):
     return render(request,'Home/aboutus.html',{} )
-
 
 def Userpage(request,usrname):
         profile = Student_B.objects.filter(Susername=usrname)
@@ -326,13 +303,10 @@ def Userpage(request,usrname):
         print(courlled)
         return render(request,'Home/userview.html',{'profile':profile,"courenorl":courseenrol,'courlled':courlled,'refrealproj':refrealproj,'messagepro':messagepro})
 
-
 def adminpage(request):
-
     return render(request,'Home/Admintemp/admin_page.html',{})
 
 def projin(request):
-
         allprojects = []
         project = Projects1.objects.values('category','projectid')
         proj = []
@@ -358,18 +332,34 @@ def projin(request):
             #     print(ik.creator)
         return render(request,'Home/Admintemp/material.html',{"project":allprojects})
 
-
 def search(request):
+    CurrSiteInfo = GetSiteInfo()
+    params = {"CurrSiteInfo":CurrSiteInfo}
+
     query=request.GET['query']
+    allproject, allproducts, allNotes = [None,None,None]
     if len(query)>78:
-        allprojalop=Projects1.objects.none()
+        allproject=Projects1.objects.none()
     else:
-        allprojTitle= Projects1.objects.filter(projectname=query)
-        allprojcreat= Projects1.objects.filter(creator=query)
-        allprojCategory =Projects1.objects.filter(category=query)
-        allprojesc = Projects1.objects.filter(desc=query)
-        allprojalop=  allprojTitle.union( allprojcreat,allprojCategory, allprojesc)
-    if allprojalop.count()==0:
+        allprojTitle= Projects1.objects.filter(projectname__icontains=query)
+        allprojcreat= Projects1.objects.filter(creator__icontains=query)
+        allprojesc = Projects1.objects.filter(desc__icontains=query)
+        
+        allproductTitle= Products.objects.filter(productname__icontains=query)
+        allproductcreator= Products.objects.filter(creator__icontains=query)
+        allproductdesc = Products.objects.filter(desc__icontains=query)
+
+        allNotesTitle= notes1.objects.filter(notestitle__icontains=query)
+        allNotesDesc= notes1.objects.filter(notedesc__icontains=query)
+
+        allNotes = allNotesTitle.union(allNotesDesc)
+        allproducts = allproductTitle.union(allproductcreator, allproductdesc)
+        allproject=  allprojTitle.union( allprojcreat, allprojesc)
+    if (allproject.count()<=0) and (allproducts.count()<=0) and (allNotes.count()<=0):
         messages.warning(request, "No search results found. Please refine your query.")
-    params={'project': allprojalop, 'query': query}
+    params['project'] = allproject
+    params['products'] = allproducts
+    params['Notes'] = allNotes
+
+    params['query'] = query
     return render(request, 'Projects1\search.html', params)

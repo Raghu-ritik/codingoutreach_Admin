@@ -3,13 +3,13 @@ from django.http.response import Http404, HttpResponse
 from django.shortcuts import render
 from django.views import generic
 # from django.urls import reverse_lazy
-from .models import Projects1,Pelcon,Content
+from .models import Projects1,Pelcon,Content, ProjectsEnrolled
 from django.conf import settings
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login,logout
 from django.contrib import messages
-from Home.models import ProjectsEnrolled
-
+from Home.models import SiteSettings
+from django.http import   HttpResponseRedirect
 from math import ceil
 import os
 
@@ -48,8 +48,12 @@ def Input(request):
 
         return render(request,'Projects1/input.html')
 
+def GetSiteInfo(SiteId=1):
+    return SiteSettings.objects.filter(id=SiteId).values()[0]
+
 def Home1(request):
-    # try:
+    try:
+        params = {"CurrSiteInfo":GetSiteInfo()}
         allprojects = []
         project = Projects1.objects.values('categoryF','projectid')
         proj = []
@@ -58,35 +62,47 @@ def Home1(request):
         dio = {key : 0 for key in cate}
         for produ in project:
             dio[produ['categoryF']] += 1
-        print(dio)
+
         for pro in dio.keys():
             ppjj = Projects1.objects.filter(categoryF = pro)
             n = dio[pro]
             nslides = n//3 + ceil((n/3)-(n//3))
             allprojects.append([ppjj,range(1,n), nslides])        
         if len(allprojects):
-            return render(request,'Projects1/index.html',{'project':allprojects})
-        return render(request,'generalPages/commingSoonPage.html')
-    # except:
-    #     return HttpResponse("There is some error at server please try again later !")
-
+            params['project'] = allprojects
+            return render(request,'Projects1/index.html',params)
+        return render(request,'generalPages/commingSoonPage.html',params)
+    except:
+        return render(request,'ErrorPages\Error504.html',params)
 
 def get_project_by_user(project,user):
     try:
+        print(project,user)
         return ProjectsEnrolled.objects.get(profileId=user,courseid=project)
     except :
         return None
+    
+def get_user_info(user_name):
+     return User.objects.filter(username=user_name).values('id', 'username', 'email', 'is_superuser')[0]
 
+def NotEnrolled(request):
+    return render(request,'generalPages/NotEnrolled.html')
 
 def projview(request,pid):
     try:
+        user_info = get_user_info(request.user)
+        params = {"CurrSiteInfo":GetSiteInfo()}
+        params['userInfo'] = user_info
         project1 = Projects1.objects.get(projectid = pid)
         project_by_user = get_project_by_user(project1,request.user)
         if project_by_user is None:
-            return render(request,'generalPages/NotEnrolled.html')
-        ppjj = Projects1.objects.get(projectid = pid)
+            if not user_info['is_superuser']:
+                return HttpResponseRedirect("/project/notenrolled")
+        project = Projects1.objects.get(projectid = pid)
         fileup = Content.objects.filter(projasso = pid).values()
-        return render(request,'Projects1/projview.html',{'project':ppjj,'filesup':fileup})
+        params['project'] = project
+        params['filesup'] = fileup
+        return render(request,'Projects1/projview.html',params)
     except :
-        return HttpResponse("There is some error at server please try again later !")
+        return render(request,'ErrorPages\Error504.html',params)
 

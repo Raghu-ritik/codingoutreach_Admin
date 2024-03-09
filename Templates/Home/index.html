@@ -32,7 +32,7 @@ index.js
                         <a href="/project"><button class="btn btn-danger">Projects</button></a>
                     {% endif %}
                     {% if CurrSiteInfo.ProductsAvailable  is True %}
-                        <a href="/products"><button class="btn btn-primary">DL solutions</button></a>
+                        <a href="/products"><button class="btn btn-info">DL solutions</button></a>
                     {% endif %}
                     {% if CurrSiteInfo.LearnWithUsAvailable is True %}
                         <a href="/LearnWithUS"><button class="btn btn-success">Learn With Us</button></a>
@@ -52,7 +52,7 @@ index.js
                     <a href="/project"><button class="btn btn-danger">Projects</button></a>
                 {% endif %}
                 {% if CurrSiteInfo.ProductsAvailable  is True %}
-                    <a href="/products"><button class="btn btn-primary">DL solutions</button></a>
+                    <a href="/products"><button class="btn btn-info">DL solutions</button></a>
                 {% endif %}
                 {% if CurrSiteInfo.LearnWithUsAvailable is True %}
                     <a href="/LearnWithUS"><button class="btn btn-success">Learn With Us</button></a>
@@ -72,7 +72,7 @@ index.js
                     <a href="/project"><button class="btn btn-danger">Projects</button></a>
                 {% endif %}
                 {% if CurrSiteInfo.ProductsAvailable  is True %}
-                    <a href="/products"><button class="btn btn-primary">DL solutions</button></a>
+                    <a href="/products"><button class="btn btn-info">DL solutions</button></a>
                 {% endif %}
                 {% if CurrSiteInfo.LearnWithUsAvailable is True %}
                     <a href="/LearnWithUS"><button class="btn btn-success">Learn With Us</button></a>
@@ -125,7 +125,7 @@ index.js
                 <div class="service-box">
                     <i class="fa fa-anchor"> </i>
                     <h3>Project Asistant</h3>
-                    <p><ul>
+                    <p><ul class="PA-PB-LA">
                         <li>Guiding Your Projects to Success</li>
                         <li>Navigating the Project Maze</li>
                         <li>Your Project’s Right-Hand Ally</li>
@@ -136,7 +136,7 @@ index.js
                 <div class="service-box">
                     <i class="fa fa-bar-chart"> </i>
                     <h3>Project Building</h3>
-                    <p><ul>
+                    <p><ul class="PA-PB-LA">
                         <li>Blueprints for Excellence</li>
                         <li>Crafting Success Brick by Brick</li>
                         <li>Elevate Your Projects with Us</li>
@@ -148,7 +148,7 @@ index.js
                     <i class="fa fa-diamond"> </i>
                     <h3>Learning Assistance</h3>
                     <p>
-                        <ul>
+                        <ul class="PA-PB-LA">
                             <li>Unlocking Knowledge, One Byte at a Time</li>
                             <li>Empowering Lifelong Learning</li>
                             <li>Your Learning Journey Starts Here</li>
@@ -196,7 +196,9 @@ index.js
                                                 {{product.desc|slice:"0:100"}}
                                             </div>
                                             <div class="col-md-12">
-                                                <button class="success">Access Now</button>
+                                                <a href="/project/view/{{product.productid}}/">
+                                                    <button class="success">Access Now</button>
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
@@ -248,9 +250,10 @@ index.js
                         <div class="carousel-item active" >
                         <div class="row project-product-row">
                     {% else %}
-                        <div class="carousel-item">
+                    <div class="carousel-item">
                         <div class="row project-product-row">
                             {% endif %}
+ 
                             {% for project in value %}
                             <div class="col-md-4 p-2 container-robot" >
                                 <img src="/media/{{ project.Image }}" class="d-block w-100" alt="Image 5">                
@@ -264,13 +267,16 @@ index.js
                                                 {{project.desc|slice:"0:100"}}
                                             </div>
                                             <div class="col-md-12">
-                                                <button class="success"> Access Now {{project.projectid}}</button>
+                                                <a href="/project/view/{{project.projectid}}/">
+                                                    <button class="success"> Access Now </button>
+                                                </a>
                                             </div>
                                         </div>
                                     </div>
                                 
                                 </div>
                             </div>
+                  
                                 {% if lastProjectID == project.projectid %}
                                 <div class="col-md-4 p-2 container-robot" style="padding: 11% !important;">
                                     <a href="/project"><button class="btn btn-outline-primary btn-lg">Show More</button></a>
@@ -331,7 +337,9 @@ index.js
                                                 {{note.notedesc|slice:"0:100"}}
                                             </div>
                                             <div class="col-md-12">
-                                                <button class="success">Access Now</button>
+                                                <a href="Notes/notesview/{{note.notesid}}/">
+                                                    <button class="success">Access Now</button>
+                                                </a>
                                             </div>
                                         </div>
                                     </div>

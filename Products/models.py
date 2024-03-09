@@ -38,7 +38,7 @@ class Products(models.Model):
     datecreated = models.DateTimeField(verbose_name="Date Created",default=now)
     purpose = models.CharField(verbose_name="Purpose of Product",max_length=250,blank=True)
     Availability = models.BooleanField(verbose_name="Is it Available ?",default=True)
-    Image = models.ImageField(verbose_name="Image for Product",upload_to= "Pproducts/images",blank=True)
+    Image = models.ImageField(verbose_name="Image for Product",default="Pproducts/defaultImages/pProductDefault.png",upload_to= "Pproducts/images",blank=True)
     rating = models.IntegerField(verbose_name="Rating of Product",choices=RATING,default=4)
     introvideo  = models.FileField(verbose_name="Introduction Video",upload_to="Pproducts/videos",blank=True)
     

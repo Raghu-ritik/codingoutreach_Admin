@@ -11,6 +11,9 @@
 .latest-News li {
   margin-bottom: 3px;
 }
+.PA-PB-LA li{
+  list-style: none;
+}
 .latest-News li:before {
   content: "\f101";
   font-family: FontAwsome;

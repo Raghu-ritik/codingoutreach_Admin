@@ -25,6 +25,7 @@ urlpatterns = [
     path('',views.Home1, name='home'),
     path('input/',views.Input, name='input form for data'),
     path('view/<int:pid>/',views.projview, name='View the page of project'),
+    path('notenrolled',views.NotEnrolled, name='View the page if user is not enrolled into the project'),
 ]
 
 if settings.DEBUG:
